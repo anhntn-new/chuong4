@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:video_player/video_player.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.network(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
+      ..initialize().then((_) {
+        _controller.play();
+        setState(() {});
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,15 +53,15 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
+                horizontal: 40,
+                vertical: 8,
               ),
               child: Column(
                 children: [
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 12,
+                      horizontal: 12,
+                      vertical: 8,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -75,11 +89,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 12,
+                      horizontal: 12,
+                      vertical: 8,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -107,11 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 12,
+                      horizontal: 12,
+                      vertical: 8,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -187,15 +201,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Container(
               padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
+                horizontal: 40,
+                vertical: 5,
               ),
               child: Column(
                 children: [
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 12,
+                      horizontal: 12,
+                      vertical: 8,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -223,11 +237,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 12,
+                      horizontal: 12,
+                      vertical: 8,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -255,11 +269,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 12,
+                      horizontal: 12,
+                      vertical: 8,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -293,6 +307,16 @@ class _MyHomePageState extends State<MyHomePage> {
             const Divider(
               color: Colors.red,
             ),
+            _controller.value.isInitialized
+                ? AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: VideoPlayer(_controller),
+                  )
+                : Container(),
+            VideoProgressIndicator(
+              _controller,
+              allowScrubbing: true,
+            )
           ],
         ),
       ),
