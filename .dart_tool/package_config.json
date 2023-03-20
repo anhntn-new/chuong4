@@ -62,6 +62,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_inappwebview",
+      "rootUri": "file:///Users/admin/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.7.2+3",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/admin/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-2.0.1",
       "packageUri": "lib/",
@@ -236,13 +242,19 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "youtube_player_flutter",
+      "rootUri": "file:///Users/admin/flutter/.pub-cache/hosted/pub.dartlang.org/youtube_player_flutter-8.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "chuong4",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2023-03-15T10:27:15.391058Z",
+  "generated": "2023-03-20T04:12:23.341257Z",
   "generator": "pub",
   "generatorVersion": "2.17.5"
 }

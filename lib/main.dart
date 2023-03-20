@@ -1,6 +1,8 @@
+import 'package:chuong4/op_1_page/op1.dart';
+import 'package:chuong4/op_2_page/op2.dart';
+import 'package:chuong4/op_3_page/op3.dart';
+import 'package:chuong4/video_url/video_url.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:video_player/video_player.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,294 +32,81 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late VideoPlayerController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
-      ..initialize().then((_) {
-        _controller.play();
-        setState(() {});
-      });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 40,
-                vertical: 8,
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ImagePage()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 60,
+                  width: double.infinity,
+                  color: Colors.green,
+                  child: Text('Show by img'),
+                ),
               ),
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white38,
-                      border: Border.all(
-                        color: Colors.black26,
-                        width: 2,
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/imgs/FAQ.png',
-                          height: 28,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 20),
-                        const Text(
-                          'FAQ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black38,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white38,
-                      border: Border.all(
-                        color: Colors.black26,
-                        width: 2,
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/imgs/Group.png',
-                          height: 28,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 20),
-                        const Text(
-                          'Contact Us',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black38,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white38,
-                      border: Border.all(
-                        color: Colors.black26,
-                        width: 2,
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/imgs/terms.png',
-                          height: 28,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 20),
-                        const Text(
-                          'Term & Conditions',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black38,
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+              SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AvatarPage()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 60,
+                  width: double.infinity,
+                  color: Colors.lightGreenAccent,
+                  child: Text('Show profile item'),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.red,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
+              SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SVGPage()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 60,
+                  width: double.infinity,
+                  color: Colors.lightBlue,
+                  child: Text('Show by svg'),
+                ),
               ),
-              child: Row(
-                children: [
-                  const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      'https://blog.logrocket.com/wp-content/uploads/2021/04/Building-Flutter-desktop-app-tutorial-examples.png',
-                    ),
-                    radius: 30,
-                  ),
-                  const SizedBox(width: 20),
-                  Column(
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        '@sakeshioyaki15',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      Text(
-                        'Nguyet Anh',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+              SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const VideoURL()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 60,
+                  width: double.infinity,
+                  color: Colors.lightBlue,
+                  child: Text('Show video from URL'),
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.red,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 40,
-                vertical: 5,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white38,
-                      border: Border.all(
-                        color: Colors.black26,
-                        width: 2,
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/svgs/FAQ.svg',
-                          height: 28,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 20),
-                        const Text(
-                          'FAQ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black38,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white38,
-                      border: Border.all(
-                        color: Colors.black26,
-                        width: 2,
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/svgs/Contact.svg',
-                          height: 28,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 20),
-                        const Text(
-                          'Contact Us',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black38,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white38,
-                      border: Border.all(
-                        color: Colors.black26,
-                        width: 2,
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/svgs/terms.svg',
-                          height: 28,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 20),
-                        const Text(
-                          'Term & Conditions',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black38,
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            const Divider(
-              color: Colors.red,
-            ),
-            _controller.value.isInitialized
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: VideoPlayer(_controller),
-                  )
-                : Container(),
-            VideoProgressIndicator(
-              _controller,
-              allowScrubbing: true,
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
