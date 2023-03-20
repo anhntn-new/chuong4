@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		tEic1ru1Ihiv5UFn8WxvQoWYmEo=
+		VAbUJwF9HL1y06m3vjQqoO3tUgc=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		p6aElPzMQmMXhcE8fWC2L46K9Ho=
+		xEky4WUUqdJ5uNteGPs4P2OBU7M=
 		</data>
 		<key>flutter_assets/assets/imgs/.DS_Store</key>
 		<data>
@@ -58,11 +58,23 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		zt1Uq03QpoZWhJaH+VKM/ETefFg=
+		yMSBieQLzAB9fuFaiasu4ULb96w=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
 		P7bb/oR3EhwqCIH1M6LyTuBIWYU=
+		</data>
+		<key>flutter_assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.css</key>
+		<data>
+		mBihw0DQ+fObskdvU/uJxi4GQ/4=
+		</data>
+		<key>flutter_assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.html</key>
+		<data>
+		60RUAYYoUnETCwVvpgmbGYgxn8Q=
+		</data>
+		<key>flutter_assets/packages/youtube_player_flutter/assets/speedometer.webp</key>
+		<data>
+		TDvhTCHVurikSmzXUIYz0DM62Dw=
 		</data>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<data>
@@ -75,7 +87,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			t3IQ1DcyTivOHmAyeYXqcGy4luyjlUqDjU9Gg28iq8k=
+			R8EqnLbcyS2PwuyJ9aMKH6sDjE+y4Xr80jhex7JO6mI=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -89,7 +101,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OrxAxMJroeH/AVsvYgLXeJjGnPK+SST9DhcL4x0yYcI=
+			AVFEkMnuXI5XQpvYcSvsXH7VwlVg28HVhiwi+dIYldU=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/imgs/FAQ.png</key>
@@ -152,7 +164,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kv/6EbPI0DhiE/3RAbhTMFlxBL4SR8SNXt6DbShZaTo=
+			VoS/C5ErX1WK4p8vSC9MHWzCyluyqICmKJTad8EboUE=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -160,6 +172,27 @@
 			<key>hash2</key>
 			<data>
 			x6NX+tjyECiQtyzbbjyY8U2zoZ7GDbJtE+T+k/dzgI0=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.css</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			LlYyIL2FXhHyMNwnoNby/VuDmimW+G7cgCWqtF5vpcM=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.html</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3HLPwfHSpQE7ud40+MrPXiblQtfXE/y+CbhltKrKbd8=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/youtube_player_flutter/assets/speedometer.webp</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			UyJsGpac7pIldiQobLwRFgmPJCSQLk0Ald1JuO/hCTg=
 			</data>
 		</dict>
 		<key>flutter_assets/vm_snapshot_data</key>

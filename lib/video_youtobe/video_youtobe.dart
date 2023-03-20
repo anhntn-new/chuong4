@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class VideoURL extends StatefulWidget {
-  const VideoURL({Key? key}) : super(key: key);
+class VideoYouTobe extends StatefulWidget {
+  const VideoYouTobe({Key? key}) : super(key: key);
 
   @override
-  State<VideoURL> createState() => _VideoURLState();
+  State<VideoYouTobe> createState() => _VideoYouTobeState();
 }
 
-class _VideoURLState extends State<VideoURL> {
-  late VideoPlayerController _controller;
+class _VideoYouTobeState extends State<VideoYouTobe> {
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
-      ..initialize().then((_) {
-        _controller.play();
-        setState(() {});
-      });
+    _controller = YoutubePlayerController(
+      initialVideoId: 'iLnmTe5Q2Qw',
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: true,
+      ),
+    );
+    _controller.addListener(() {
+      setState(() {});
+    });
+    // _controller.initialize().then((_) => setState(() {}));
+    _controller.play();
   }
 
   @override
@@ -28,27 +34,30 @@ class _VideoURLState extends State<VideoURL> {
       body: Center(
         child: Container(
           padding: const EdgeInsets.symmetric(
-            horizontal: 40,
+            horizontal: 4,
             vertical: 5,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              VideoPlayer(_controller),
-              VideoProgressIndicator(
-                _controller,
-                allowScrubbing: true,
-              )
+              YoutubePlayer(
+                actionsPadding: const EdgeInsets.all(4),
+                controller: _controller,
+                showVideoProgressIndicator: true,
+                bottomActions: [
+                  CurrentPosition(),
+                  ProgressBar(isExpanded: true),
+                ],
+                progressColors: const ProgressBarColors(
+                  playedColor: Colors.amber,
+                  handleColor: Colors.amberAccent,
+                ),
+                width: double.infinity,
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
   }
 }

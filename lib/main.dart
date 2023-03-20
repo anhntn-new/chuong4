@@ -2,6 +2,7 @@ import 'package:chuong4/op_1_page/op1.dart';
 import 'package:chuong4/op_2_page/op2.dart';
 import 'package:chuong4/op_3_page/op3.dart';
 import 'package:chuong4/video_url/video_url.dart';
+import 'package:chuong4/video_youtobe/video_youtobe.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -38,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -54,10 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 60,
                   width: double.infinity,
                   color: Colors.green,
-                  child: Text('Show by img'),
+                  child: const Text('Show by img'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -70,10 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 60,
                   width: double.infinity,
                   color: Colors.lightGreenAccent,
-                  child: Text('Show profile item'),
+                  child: const Text('Show profile item'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -86,10 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 60,
                   width: double.infinity,
                   color: Colors.lightBlue,
-                  child: Text('Show by svg'),
+                  child: const Text('Show by svg'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -102,7 +103,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 60,
                   width: double.infinity,
                   color: Colors.lightBlue,
-                  child: Text('Show video from URL'),
+                  child: const Text('Show video from URL'),
+                ),
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const VideoYouTobe()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 60,
+                  width: double.infinity,
+                  color: Colors.lightBlue,
+                  child: const Text('Show video from YouTobe'),
                 ),
               ),
             ],
