@@ -1,8 +1,4 @@
-import 'package:chuong4/op_1_page/op1.dart';
-import 'package:chuong4/op_2_page/op2.dart';
-import 'package:chuong4/op_3_page/op3.dart';
-import 'package:chuong4/video_url/video_url.dart';
-import 'package:chuong4/video_youtobe/video_youtobe.dart';
+import 'package:chuong4/unit_5/unit_5.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -47,39 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ImagePage()),
-                  );
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  width: double.infinity,
-                  color: Colors.green,
-                  child: const Text('Show by img'),
-                ),
-              ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const AvatarPage()),
-                  );
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  width: double.infinity,
-                  color: Colors.lightGreenAccent,
-                  child: const Text('Show profile item'),
-                ),
-              ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SVGPage()),
+                    MaterialPageRoute(builder: (context) => const Unit5()),
                   );
                 },
                 child: Container(
@@ -87,40 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 60,
                   width: double.infinity,
                   color: Colors.lightBlue,
-                  child: const Text('Show by svg'),
-                ),
-              ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const VideoURL()),
-                  );
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  width: double.infinity,
-                  color: Colors.lightBlue,
-                  child: const Text('Show video from URL'),
-                ),
-              ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const VideoYouTobe()),
-                  );
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  width: double.infinity,
-                  color: Colors.lightBlue,
-                  child: const Text('Show video from YouTobe'),
+                  child: const Text('Chuong 5'),
                 ),
               ),
             ],
