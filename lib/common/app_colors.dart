@@ -13,9 +13,17 @@ class AppColors {
   static const Color lightViolet = Color(0xFFA6A1E0);
   static const Color lightBlue = Color(0xffA1F3FE);
 
+  static const Color lightVioletOpa = Color(0x4DA6A1E0);
+  static const Color lightBlueOpa = Color(0x4DA1F3FE);
+
   static const Color dotViolet = Color(0xFF826EC8);
   static const Color dotBlue = Color(0xff64ABDB);
 
+  static const Color dotVioletOpa = Color(0x4D826EC8);
+  static const Color dotBlueOpa = Color(0x4D64ABDB);
+
+  static const Color black = Color(0xff121212);
+  static const Color white = Color(0xffffffff);
   static const LinearGradient background = LinearGradient(
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
@@ -43,12 +51,39 @@ class AppColors {
     ],
   );
 
+  static const LinearGradient menuOpa = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: <Color>[
+      lightVioletOpa,
+      lightBlueOpa,
+    ],
+  );
+
   static const LinearGradient dotIndicator = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: <Color>[
       dotBlue,
       dotViolet,
+    ],
+  );
+
+  static const LinearGradient dotIndicatorOpa = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: <Color>[
+      dotBlueOpa,
+      dotVioletOpa,
+    ],
+  );
+
+  static const LinearGradient blurBlack = LinearGradient(
+    begin: Alignment.bottomCenter,
+    end: Alignment(0, 0),
+    colors: <Color>[
+      black,
+      Colors.transparent,
     ],
   );
 }
