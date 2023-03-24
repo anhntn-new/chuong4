@@ -1,5 +1,6 @@
-import 'package:chuong4/unit_5/unit_5.dart';
+import 'package:chuong4/unit_5/app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -29,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Unit5()),
+                    MaterialPageRoute(builder: (context) => App()),
                   );
                 },
                 child: Container(

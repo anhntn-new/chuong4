@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		0yivpQACEh2ft55ygI7+f1Q/uwg=
+		KE1MGYnwnzCILefzNXFsKqqb2xg=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -44,9 +44,9 @@
 		<data>
 		+VUjUOKmwcwadC349+MGpQIHo5g=
 		</data>
-		<key>flutter_assets/assets/imgs/merrick.png</key>
+		<key>flutter_assets/assets/imgs/merric.png</key>
 		<data>
-		1UpplloaL8r6ylcpknCeYyWUhUY=
+		RUfk//nTnPS3r4ssarE5xJ8dpx4=
 		</data>
 		<key>flutter_assets/assets/imgs/terms.png</key>
 		<data>
@@ -60,6 +60,10 @@
 		<data>
 		QOIzdIT/+n65ObhursyQirJ7qk8=
 		</data>
+		<key>flutter_assets/assets/svgs/dot.svg</key>
+		<data>
+		9H6dp8kxD2VapO7PKzIIzIB7/sk=
+		</data>
 		<key>flutter_assets/assets/svgs/genres.svg</key>
 		<data>
 		qt4+4NgX5rmgxR7liit9CE9do0g=
@@ -68,7 +72,15 @@
 		<data>
 		5LsKk2WFqxHd/zV1DVhFo0ZgjNo=
 		</data>
+		<key>flutter_assets/assets/svgs/heart_shadow.svg</key>
+		<data>
+		Zr6BvUr6v+AGFXHpOtDCnuylohY=
+		</data>
 		<key>flutter_assets/assets/svgs/home.svg</key>
+		<data>
+		Ytv4dx/DYsZeoSpcuX8ZHgwOCjQ=
+		</data>
+		<key>flutter_assets/assets/svgs/home_shadow.svg</key>
 		<data>
 		uXEr4O7Kfcrozw3AJFW+1dwjW20=
 		</data>
@@ -88,6 +100,10 @@
 		<data>
 		fqLKfOWpRCQ5pmT1SxYKizk3UwU=
 		</data>
+		<key>flutter_assets/assets/svgs/shuffle_shadow.svg</key>
+		<data>
+		+12/GqBsAy0D5QaROoKB4u2PZvc=
+		</data>
 		<key>flutter_assets/assets/svgs/theatre.svg</key>
 		<data>
 		OVlReIF9nvfBJRqSWC+dFzv4fxA=
@@ -96,6 +112,10 @@
 		<data>
 		TXPUbxvMxOJiNBXFyT6lfLvzGBw=
 		</data>
+		<key>flutter_assets/assets/svgs/ticket_shadow.svg</key>
+		<data>
+		zoBby5RsuGsLA1Gatsm5cSXw+Us=
+		</data>
 		<key>flutter_assets/assets/svgs/tv_series.svg</key>
 		<data>
 		dhjoZEIvRpUEkp8gCtY1IXqnoL0=
@@ -103,6 +123,10 @@
 		<key>flutter_assets/assets/svgs/user.svg</key>
 		<data>
 		Tn5VywhzxQ+0pF3nS5WHrHiT6s8=
+		</data>
+		<key>flutter_assets/assets/svgs/user_shadow.svg</key>
+		<data>
+		btT58oBxWd180JFrla/w3cJMXZw=
 		</data>
 		<key>flutter_assets/assets/svgs/void.svg</key>
 		<data>
@@ -118,7 +142,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		jhLttUuqAYhVBqkokqBWu4/l7oo=
+		cH+7lmeCpia9Iyvz6JSNU6Sx8tk=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -147,7 +171,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			O+57Q3+a8II8WIMdMqX8vmgS4FT60dpx4+1GC3xIS14=
+			mpdYRA98ScHX3DgBSdLAvn0+Vu4s/iB7bTktvnlxVL8=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -199,11 +223,11 @@
 			OvfezagY8T8hF76WR7PWLbYaVX7HSRad2Ccc2tZAvsU=
 			</data>
 		</dict>
-		<key>flutter_assets/assets/imgs/merrick.png</key>
+		<key>flutter_assets/assets/imgs/merric.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wbD67d3dvAMd5QngoQK1DvWtgi4XRmMjwJtRtFo3hK4=
+			dF28s7ckuRLliflO4FGmG9D9QWl8VS034cgpujfw4OI=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/imgs/terms.png</key>
@@ -227,6 +251,13 @@
 			7RHTeuYvZH8o3JmYAVlLKTmbl5fVqbrO+kUNGMHXaHo=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/svgs/dot.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xGoglgC/TFn8B+F+zObIqbD0Y7pKpr4bUJmeN3+aKUo=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/svgs/genres.svg</key>
 		<dict>
 			<key>hash2</key>
@@ -241,7 +272,21 @@
 			VRkYycqBurDGeqCdz4IsrI78j537I2vY00k25VupcbY=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/svgs/heart_shadow.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NST6eBesfKdpgZcMUllHH6FVGx0sXa1HxVaW/l7U/SM=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/svgs/home.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			XEN3NTxaPGQntFhoPiytYtpWcayTbhks89R9k9ezAgg=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/svgs/home_shadow.svg</key>
 		<dict>
 			<key>hash2</key>
 			<data>
@@ -276,6 +321,13 @@
 			1STcYAQB8mv4ysLOOFJrO9/RresC79HWHU8kPEdRqQg=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/svgs/shuffle_shadow.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			55rvPdX8rlXIM3pLEkAmqSFczRpa1BV24s52lakqKXk=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/svgs/theatre.svg</key>
 		<dict>
 			<key>hash2</key>
@@ -290,6 +342,13 @@
 			LhOZT/eD2y+bWasXMmlsi9kD3NGNGLRinP/EXWptTQg=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/svgs/ticket_shadow.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			jSDTWr58FGhUHWx42S+BbnF2WqXjl33FOmq4EOBIkUc=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/svgs/tv_series.svg</key>
 		<dict>
 			<key>hash2</key>
@@ -302,6 +361,13 @@
 			<key>hash2</key>
 			<data>
 			ffJiCmoWfcBUAHCFD7Q628Vfi8sGJsFkZuk8YQISUCU=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/svgs/user_shadow.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DM614nMoJ+44+BXuJJF2VmWZTufmNBOXb0nzgX3uwow=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/svgs/void.svg</key>
@@ -329,7 +395,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7b2InnYG5/vTbUOwlX5QrmNPzUfeLoB2YM4cZ9R6n7A=
+			rG++1nfrItJ3MyWLdlfHA+CbiW9+j11xbePcrIrksAk=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
