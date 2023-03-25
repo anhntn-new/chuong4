@@ -37,7 +37,7 @@ class _AppState extends State<App> {
       body: _widgetOptions.elementAt(_selectedIndex),
       // extendBody: true,
       bottomNavigationBar: SizedBox(
-        height: 84,
+        height: 64,
         child: Stack(
           fit: StackFit.loose,
           alignment: Alignment.bottomCenter,
@@ -56,75 +56,79 @@ class _AppState extends State<App> {
               decoration: const BoxDecoration(
                 gradient: AppColors.search,
               ),
-              child: BottomNavigationBar(
-                elevation: 0.0,
-                unselectedLabelStyle: const TextStyle(fontSize: 0),
-                selectedLabelStyle: const TextStyle(fontSize: 0),
-                landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
-                backgroundColor: Colors.transparent,
-                type: BottomNavigationBarType.shifting,
-                selectedFontSize: 0.0,
-                unselectedFontSize: 0.0,
-                items: [
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset('assets/svgs/home.svg'),
-                    label: 'home',
-                    backgroundColor: Colors.transparent,
-                    activeIcon: Column(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/svgs/home_shadow.svg',
-                        ),
-                        SvgPicture.asset('assets/svgs/dot.svg'),
-                      ],
+              child: MediaQuery(
+                data: const MediaQueryData(
+                    padding: EdgeInsets.only(bottom: 10) // here is the padding
                     ),
-                  ),
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset('assets/svgs/heart.svg'),
-                    label: 'Home',
-                    activeIcon: Column(
-                      children: [
-                        SvgPicture.asset('assets/svgs/heart_shadow.svg'),
-                        SvgPicture.asset('assets/svgs/dot.svg'),
-                      ],
+                child: BottomNavigationBar(
+                  elevation: 0.0,
+                  unselectedLabelStyle: const TextStyle(fontSize: 0),
+                  selectedLabelStyle: const TextStyle(fontSize: 0),
+                  backgroundColor: Colors.transparent,
+                  type: BottomNavigationBarType.shifting,
+                  selectedFontSize: 0.0,
+                  unselectedFontSize: 0.0,
+                  items: [
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset('assets/svgs/home.svg'),
+                      label: 'home',
+                      backgroundColor: Colors.transparent,
+                      activeIcon: Column(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svgs/home_shadow.svg',
+                          ),
+                          SvgPicture.asset('assets/svgs/dot.svg'),
+                        ],
+                      ),
                     ),
-                  ),
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset('assets/svgs/ticket.svg'),
-                    label: 'Home',
-                    activeIcon: Column(
-                      children: [
-                        SvgPicture.asset('assets/svgs/ticket_shadow.svg'),
-                        SvgPicture.asset('assets/svgs/dot.svg'),
-                      ],
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset('assets/svgs/heart.svg'),
+                      label: 'Home',
+                      activeIcon: Column(
+                        children: [
+                          SvgPicture.asset('assets/svgs/heart_shadow.svg'),
+                          SvgPicture.asset('assets/svgs/dot.svg'),
+                        ],
+                      ),
                     ),
-                  ),
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset('assets/svgs/user.svg'),
-                    label: 'Home',
-                    activeIcon: Column(
-                      children: [
-                        SvgPicture.asset('assets/svgs/user_shadow.svg'),
-                        SvgPicture.asset('assets/svgs/dot.svg'),
-                      ],
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset('assets/svgs/ticket.svg'),
+                      label: 'Home',
+                      activeIcon: Column(
+                        children: [
+                          SvgPicture.asset('assets/svgs/ticket_shadow.svg'),
+                          SvgPicture.asset('assets/svgs/dot.svg'),
+                        ],
+                      ),
                     ),
-                  ),
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset('assets/svgs/shuffle.svg'),
-                    label: 'Home',
-                    activeIcon: Column(
-                      children: [
-                        SvgPicture.asset('assets/svgs/shuffle_shadow.svg'),
-                        SvgPicture.asset('assets/svgs/dot.svg'),
-                      ],
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset('assets/svgs/user.svg'),
+                      label: 'Home',
+                      activeIcon: Column(
+                        children: [
+                          SvgPicture.asset('assets/svgs/user_shadow.svg'),
+                          SvgPicture.asset('assets/svgs/dot.svg'),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-                onTap: (int index) {
-                  _onItemTapped(index);
-                },
-                currentIndex: _selectedIndex,
-                showSelectedLabels: false,
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset('assets/svgs/shuffle.svg'),
+                      label: 'Home',
+                      activeIcon: Column(
+                        children: [
+                          SvgPicture.asset('assets/svgs/shuffle_shadow.svg'),
+                          SvgPicture.asset('assets/svgs/dot.svg'),
+                        ],
+                      ),
+                    ),
+                  ],
+                  onTap: (int index) {
+                    _onItemTapped(index);
+                  },
+                  currentIndex: _selectedIndex,
+                  showSelectedLabels: false,
+                ),
               ),
             ),
           ],
