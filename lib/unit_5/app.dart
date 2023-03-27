@@ -58,7 +58,10 @@ class _AppState extends State<App> {
               ),
               child: MediaQuery(
                 data: const MediaQueryData(
-                    padding: EdgeInsets.only(bottom: 10) // here is the padding
+                    padding: EdgeInsets.only(
+                  bottom: 10,
+                  top: 10,
+                ) // here is the padding
                     ),
                 child: BottomNavigationBar(
                   elevation: 0.0,

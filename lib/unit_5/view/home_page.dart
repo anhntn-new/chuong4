@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
               height: heightDimen * (160 / 926),
               child: buildSwiper(),
             ),
+            const SizedBox(height: 20),
             buildMenu(widthDimen, heightDimen),
             SizedBox(height: 35 * (heightDimen / 926)),
             const Padding(
@@ -57,6 +58,7 @@ class _HomeState extends State<Home> {
             ),
             const SizedBox(height: 15),
             Expanded(child: buildSwiper2()),
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -66,20 +68,47 @@ class _HomeState extends State<Home> {
   Widget buildSwiper2() {
     return Swiper(
       itemCount: 4,
-      layout: SwiperLayout.DEFAULT,
-      customLayoutOption: new CustomLayoutOption(startIndex: 0, stateCount: 3)
-          .addScale([1, 0.6], Alignment(-1, 0)),
+      layout: SwiperLayout.CUSTOM,
+      itemHeight: 215, //using with SwiperLayout.CUSTOM
+      itemWidth: 145,
+
+      transformer: ScaleAndFadeTransformer(),
+      customLayoutOption: CustomLayoutOption(
+        startIndex: 0,
+        stateCount: 3,
+      ).addScale(
+        [0.9, 1, 0.9],
+        const Alignment(0, 0),
+      ).addTranslate([
+        const Offset(-170.0, 0.0),
+        const Offset(0.0, 0.0),
+        const Offset(170.0, 0.0)
+      ]).addOpacity([0.5, 1.0, 0.5]),
       itemBuilder: (BuildContext context, int index) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.asset(
-            'assets/imgs/merric.png',
-            width: 145,
-            fit: BoxFit.fitWidth,
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                spreadRadius: 0,
+                blurRadius: 15,
+                offset: Offset(4, 4), // changes position of shadow
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(30),
+            child: Image.asset(
+              'assets/imgs/merric.png',
+              width: 145,
+              fit: BoxFit.fitWidth,
+            ),
           ),
         );
       },
       pagination: SwiperPagination(
+        margin: const EdgeInsets.only(top: 17),
         builder: SwiperCustomPagination(
           builder: (context, config) => buildPagination(config),
         ),
@@ -87,7 +116,7 @@ class _HomeState extends State<Home> {
       outer: true,
       fade: 0.2,
       viewportFraction: 0.4,
-      scale: 0.9,
+      scale: 0.7,
     );
   }
 
@@ -169,26 +198,40 @@ class _HomeState extends State<Home> {
   Widget buildSwiper() {
     return Swiper(
       itemCount: 4,
-      customLayoutOption: CustomLayoutOption(startIndex: 0, stateCount: 4)
-          .addScale([1, 0.6], Alignment.center),
       itemBuilder: (BuildContext context, int index) {
-        return ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(30)),
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Image.asset(
-                "assets/imgs/deadpool.png",
-                fit: BoxFit.cover,
-              ),
-              Container(
-                decoration: const BoxDecoration(gradient: AppColors.blurBlack),
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(30)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                // spreadRadius: 30,
+                blurRadius: 15,
+                offset: Offset(0, 4),
               ),
             ],
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(30)),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Image.asset(
+                  "assets/imgs/deadpool.png",
+                  fit: BoxFit.cover,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: AppColors.blurBlack,
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
       pagination: SwiperPagination(
+        margin: const EdgeInsets.only(top: 17),
         builder: SwiperCustomPagination(
           builder: (context, config) => buildPagination(config),
         ),
@@ -202,6 +245,7 @@ class _HomeState extends State<Home> {
 
   Widget buildPagination(SwiperPluginConfig config) {
     return SizedBox(
+      // padding: EdgeInsets.only(top: 0),
       height: 8,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
