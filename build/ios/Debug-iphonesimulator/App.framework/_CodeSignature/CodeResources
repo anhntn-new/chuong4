@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		KE1MGYnwnzCILefzNXFsKqqb2xg=
+		+UUsqzMbIx5bmq64PVErbI8YmJs=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -32,6 +32,10 @@
 		<data>
 		Vqsq9zaFl8JxDkSooluD1d1dgHw=
 		</data>
+		<key>flutter_assets/assets/imgs/chris.png</key>
+		<data>
+		FCVZ+EcE28tnHwffddG+DS57tsQ=
+		</data>
 		<key>flutter_assets/assets/imgs/deadpool.png</key>
 		<data>
 		HDfjEwfpaTghHG+nMNBXSXpMjpw=
@@ -52,6 +56,10 @@
 		<data>
 		bG+qSCoJsuCYuaSVtKs5noQuW+M=
 		</data>
+		<key>flutter_assets/assets/imgs/thor.png</key>
+		<data>
+		zVWNQWtERIt2nw9qgEVhpEcuLeQ=
+		</data>
 		<key>flutter_assets/assets/imgs/titan.png</key>
 		<data>
 		g0RXZLPpKyv2zdppittsZX9b1ew=
@@ -59,6 +67,10 @@
 		<key>flutter_assets/assets/imgs/wonder.png</key>
 		<data>
 		QOIzdIT/+n65ObhursyQirJ7qk8=
+		</data>
+		<key>flutter_assets/assets/svgs/back.svg</key>
+		<data>
+		PADK4qTqXJ/b4vOPxDh6AC9/xvc=
 		</data>
 		<key>flutter_assets/assets/svgs/dot.svg</key>
 		<data>
@@ -84,6 +96,10 @@
 		<data>
 		uXEr4O7Kfcrozw3AJFW+1dwjW20=
 		</data>
+		<key>flutter_assets/assets/svgs/imdb.svg</key>
+		<data>
+		uS7FphQxj9miF+xOXYuFY6OD+l4=
+		</data>
 		<key>flutter_assets/assets/svgs/movies.svg</key>
 		<data>
 		c13xuwpuoKX3NSHmWByH9bVQoZY=
@@ -95,6 +111,10 @@
 		<key>flutter_assets/assets/svgs/search.svg</key>
 		<data>
 		T7hrdr84CtJSzli1P45yKtgOAu8=
+		</data>
+		<key>flutter_assets/assets/svgs/share.svg</key>
+		<data>
+		GndSzH/hSrFRbcdXXNFotkW//QQ=
 		</data>
 		<key>flutter_assets/assets/svgs/shuffle.svg</key>
 		<data>
@@ -142,7 +162,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		cH+7lmeCpia9Iyvz6JSNU6Sx8tk=
+		t2egRyO+SyMJvcLq3q1RsLVoNzs=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -171,7 +191,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mpdYRA98ScHX3DgBSdLAvn0+Vu4s/iB7bTktvnlxVL8=
+			7Ll8PmSasbfOtkIctVyYP1xo3XH3sZZwdZQJPC6hu8A=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -200,6 +220,13 @@
 			<key>hash2</key>
 			<data>
 			HTGPuu5y3Q0E6FQrOo0ty7g3X6ev7Z1V7tYCXjPryRs=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/imgs/chris.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			//lPTVh48TElcB8wZhdHisYl+K8WToTmelXc/ylxeg8=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/imgs/deadpool.png</key>
@@ -237,6 +264,13 @@
 			3mnLTriqrHsCxaZKEfWhMhr0amux19DP2pdOZOyV/wM=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/imgs/thor.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			g3TCu5ucqekT26NGoyIuq1NRPMwEB4DiEZb0P6sHWXE=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/imgs/titan.png</key>
 		<dict>
 			<key>hash2</key>
@@ -249,6 +283,13 @@
 			<key>hash2</key>
 			<data>
 			7RHTeuYvZH8o3JmYAVlLKTmbl5fVqbrO+kUNGMHXaHo=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/svgs/back.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2AmJVKaQkFgIvqBQ6Cw9ZoDL2LHTY777zDMBM/XmSxg=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/svgs/dot.svg</key>
@@ -293,6 +334,13 @@
 			NzLMvxGAP7sGv96gjXrC9KBPKVrNbvLbH5TC861c5Zg=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/svgs/imdb.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			L2nbdEhWcOTkip0X0INKX9AeeL8+D0/R1IYXVniC5tI=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/svgs/movies.svg</key>
 		<dict>
 			<key>hash2</key>
@@ -312,6 +360,13 @@
 			<key>hash2</key>
 			<data>
 			p0oKN/4rIIEnmZbj+TNeG2jI/LwI+AJl+isc5rFCZ5M=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/svgs/share.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Q/r8kZ7xgwbKRM4i9hvswkvWG6sYx2TOb4iqQQbPH5k=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/svgs/shuffle.svg</key>
@@ -395,7 +450,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rG++1nfrItJ3MyWLdlfHA+CbiW9+j11xbePcrIrksAk=
+			hS8oVkjNTmT328UJ6YyxlcgVsOzRpu+s+QbSggUGn0M=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

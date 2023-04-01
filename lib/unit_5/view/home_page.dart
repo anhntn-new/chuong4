@@ -1,4 +1,5 @@
 import 'package:chuong4/unit_5/common/app_colors.dart';
+import 'package:chuong4/unit_5/common/containText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
@@ -199,33 +200,63 @@ class _HomeState extends State<Home> {
     return Swiper(
       itemCount: 4,
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(30)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.25),
-                // spreadRadius: 30,
-                blurRadius: 15,
-                offset: Offset(0, 4),
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(30)),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Image.asset(
-                  "assets/imgs/deadpool.png",
-                  fit: BoxFit.cover,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: AppColors.blurBlack,
-                  ),
+        return GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/detail');
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.25),
+                  // spreadRadius: 30,
+                  blurRadius: 15,
+                  offset: Offset(0, 4),
                 ),
               ],
+            ),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.asset(
+                    "assets/imgs/deadpool.png",
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: AppColors.blurBlack,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        left: 26,
+                        right: 26,
+                        bottom: 15,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Deadpool 2',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          ContainText(
+                            title: '',
+                            isPoint: true,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );

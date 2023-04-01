@@ -21,15 +21,15 @@
 #.vscode/
 
 # Flutter/Dart/Pub related
-**/doc/api/
+**/doc/api
 **/ios/Flutter/.last_build_id
-.dart_tool/
+.dart_tool
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
-.pub-cache/
-.pub/
-/build/
+.pub-cache
+.pub
+/build
 
 # Web related
 lib/generated_plugin_registrant.dart
@@ -106,4 +106,5 @@ Temporary Items
 .apdisk
 
 .fvm
-
+build
+build/

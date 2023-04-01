@@ -22,6 +22,8 @@ class AppColors {
   static const Color dotVioletOpa = Color(0x4D826EC8);
   static const Color dotBlueOpa = Color(0x4D64ABDB);
 
+  static const Color yellow = Color(0xFFF5C518);
+
   static const Color black = Color(0xff121212);
   static const Color white = Color(0xffffffff);
   static const LinearGradient background = LinearGradient(
