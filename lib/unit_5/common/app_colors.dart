@@ -26,6 +26,9 @@ class AppColors {
 
   static const Color black = Color(0xff121212);
   static const Color white = Color(0xffffffff);
+
+  static const Color lineColor = Color(0xffDDEAFF);
+
   static const LinearGradient background = LinearGradient(
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,

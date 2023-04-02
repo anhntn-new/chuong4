@@ -18,26 +18,35 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
+          SizedBox(
             height: double.infinity,
             width: double.infinity,
-            child: Image.asset(
-              'assets/imgs/thor.png',
-              fit: BoxFit.cover,
+            child: Image.network(
+              'https://m.media-amazon.com/images/M/MV5BMTQyNzAwOTUxOF5BMl5BanBnXkFtZTcwMTE0OTc5OQ@@._V1_FMjpg_UX770_.jpg',
+              fit: BoxFit.fitWidth,
               alignment: Alignment.topCenter,
             ),
           ),
           CustomScrollView(
+            physics: const ClampingScrollPhysics(),
             slivers: [
               SliverAppBar(
-                title: Text(''),
+                title: const Text(''),
                 leading: Padding(
-                  padding: EdgeInsets.only(left: 53),
-                  child: SvgPicture.asset(
-                    'assets/svgs/back.svg',
-                    width: 18,
-                    fit: BoxFit.fitWidth,
+                  padding: const EdgeInsets.only(left: 53),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: SvgPicture.asset(
+                      'assets/svgs/back.svg',
+                      width: 18,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
+                ),
+                flexibleSpace: const FlexibleSpaceBar(
+                  collapseMode: CollapseMode.pin,
                 ),
                 shadowColor: Colors.transparent,
                 leadingWidth: 18 + 53,
@@ -48,7 +57,7 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.transparent,
-                pinned: true,
+                pinned: false,
                 expandedHeight: MediaQuery.of(context).size.height * 0.4,
                 collapsedHeight: 56,
                 floating: true,
@@ -68,24 +77,42 @@ class _DetailPageState extends State<DetailPage> {
                     padding: const EdgeInsets.only(
                       left: 50,
                       right: 50,
-                      top: 34,
                     ),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Thor',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 64,
+                        const SizedBox(height: 16),
+                        Align(
+                          alignment: Alignment.center,
+                          child: SvgPicture.asset(
+                            'assets/svgs/line.svg',
+                            color: AppColors.lineColor.withOpacity(0.75),
+                            colorBlendMode: BlendMode.srcIn,
+                            width: 32,
+                            height: 3,
+                            fit: BoxFit.fill,
                           ),
                         ),
-                        Text(
-                          'The Dark World',
-                          style: TextStyle(
-                            color: AppColors.white.withOpacity(0.5),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                        const SizedBox(height: 16),
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Thor',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 64,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          child: Text(
+                            'The Dark World',
+                            style: TextStyle(
+                              color: AppColors.white.withOpacity(0.5),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 29),
@@ -93,7 +120,7 @@ class _DetailPageState extends State<DetailPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
-                              children: [
+                              children: const [
                                 ContainText(
                                   title: 'Action',
                                 ),
@@ -138,7 +165,7 @@ class _DetailPageState extends State<DetailPage> {
                                     color: Colors.white.withOpacity(0.75),
                                     fontSize: 12,
                                   ),
-                                  children: [
+                                  children: const [
                                     TextSpan(
                                       text: 'More',
                                       style: TextStyle(
@@ -159,7 +186,7 @@ class _DetailPageState extends State<DetailPage> {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              children: const [
                                 Text(
                                   'Cast',
                                   style: TextStyle(
@@ -180,7 +207,7 @@ class _DetailPageState extends State<DetailPage> {
                             ),
                             const SizedBox(height: 16),
                             Row(
-                              children: [
+                              children: const [
                                 CastItem(
                                   realName: 'Chris Hemsworth',
                                   characterName: 'Thor',
@@ -208,6 +235,55 @@ class _DetailPageState extends State<DetailPage> {
                               ],
                             )
                           ],
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Photo',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Expanded(
+                          child: GridView.count(
+                            physics: const NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.all(0),
+                            crossAxisSpacing: 4,
+                            mainAxisSpacing: 4,
+                            crossAxisCount: 3,
+                            children: [
+                              Image.network(
+                                'https://m.media-amazon.com/images/M/MV5BNTAwNDg2NTc5MF5BMl5BanBnXkFtZTgwMTY1NDA0MDE@._V1_FMjpg_UX1280_.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Image.network(
+                                'https://m.media-amazon.com/images/M/MV5BMTM5NjQ4NTA0NV5BMl5BanBnXkFtZTgwOTU1NDA0MDE@._V1_FMjpg_UX1024_.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Image.network(
+                                'https://m.media-amazon.com/images/M/MV5BNTAwNDg2NTc5MF5BMl5BanBnXkFtZTgwMTY1NDA0MDE@._V1_FMjpg_UX1280_.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Image.network(
+                                'https://m.media-amazon.com/images/M/MV5BMjI0MTAzODU3MF5BMl5BanBnXkFtZTgwMDQ3OTIxMDE@._V1_FMjpg_UX1280_.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Image.network(
+                                'https://m.media-amazon.com/images/M/MV5BMTQ5MTA2MzQ5NV5BMl5BanBnXkFtZTgwNTQ3OTIxMDE@._V1_FMjpg_UX1280_.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Image.network(
+                                'https://m.media-amazon.com/images/M/MV5BMTM3NzcxOTA2OF5BMl5BanBnXkFtZTgwNTc4OTIxMDE@._V1_FMjpg_UX1280_.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Image.network(
+                                'https://m.media-amazon.com/images/M/MV5BMjMzMTk1ODY4NF5BMl5BanBnXkFtZTgwMjExMDMxMDE@._V1_FMjpg_UX1024_.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
                         )
                       ],
                     ),
@@ -219,31 +295,5 @@ class _DetailPageState extends State<DetailPage> {
         ],
       ),
     );
-    //   Stack(
-    //   children: [
-    //     Image.asset(
-    //       'assets/imgs/thor.png',
-    //       fit: BoxFit.fitWidth,
-    //       width: double.infinity,
-    //     ),
-    //     Container(
-    //       width: double.infinity,
-    //       height: double.infinity,
-    //       alignment: Alignment.bottomCenter,
-    //       color: Colors.transparent,
-    //       child: Container(
-    //         decoration: BoxDecoration(
-    //           gradient: AppColors.background,
-    //           borderRadius: BorderRadius.only(
-    //             topRight: Radius.circular(50),
-    //             topLeft: Radius.circular(50),
-    //           ),
-    //         ),
-    //         height: (431 / 926) * MediaQuery.of(context).size.height,
-    //         width: double.infinity,
-    //       ),
-    //     )
-    //   ],
-    // );
   }
 }

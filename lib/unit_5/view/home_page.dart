@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
   Widget buildSwiper2() {
     return Swiper(
       itemCount: 4,
-      layout: SwiperLayout.CUSTOM,
+      layout: SwiperLayout.DEFAULT,
       itemHeight: 215, //using with SwiperLayout.CUSTOM
       itemWidth: 145,
 
@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
                 color: Colors.black.withOpacity(0.25),
                 spreadRadius: 0,
                 blurRadius: 15,
-                offset: Offset(4, 4), // changes position of shadow
+                offset: const Offset(4, 4), // changes position of shadow
               ),
             ],
           ),
@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
             child: Image.asset(
               'assets/imgs/merric.png',
               width: 145,
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.cover,
             ),
           ),
         );
@@ -212,7 +212,7 @@ class _HomeState extends State<Home> {
                   color: Colors.black.withOpacity(0.25),
                   // spreadRadius: 30,
                   blurRadius: 15,
-                  offset: Offset(0, 4),
+                  offset: const Offset(0, 4),
                 ),
               ],
             ),
@@ -226,11 +226,11 @@ class _HomeState extends State<Home> {
                     fit: BoxFit.cover,
                   ),
                   Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: AppColors.blurBlack,
                     ),
                     child: Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         left: 26,
                         right: 26,
                         bottom: 15,
@@ -238,7 +238,7 @@ class _HomeState extends State<Home> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
+                        children: const [
                           Text(
                             'Deadpool 2',
                             style: TextStyle(
@@ -316,49 +316,53 @@ class _HomeState extends State<Home> {
         ),
       ),
       child: TextField(
-        // textAlignVertical: TextAlignVertical.center,
+        textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
-          border: InputBorder.none,
+          constraints: const BoxConstraints(minHeight: 50, maxHeight: 50),
+          enabledBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: Colors.white.withOpacity(0.2), width: 0.5),
+              borderRadius: const BorderRadius.all(Radius.circular(15.0))),
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white, width: 1),
+              borderRadius: BorderRadius.all(Radius.circular(15.0))),
           prefixIcon: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 14,
-            ),
+            padding: const EdgeInsets.all(14),
             child: SvgPicture.asset(
               'assets/svgs/search.svg',
               height: 22,
-              width: 22,
-              fit: BoxFit.fill,
+            ),
+          ),
+          suffixIcon: Container(
+            padding: const EdgeInsets.symmetric(vertical: 14),
+            // color: Colors.black,
+            width: 30,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  color: const Color.fromRGBO(255, 255, 255, 0.5),
+                  width: 1,
+                  height: 35,
+                ),
+                const SizedBox(width: 17),
+                SvgPicture.asset(
+                  'assets/svgs/void.svg',
+                  height: 22,
+                ),
+                const SizedBox(width: 14),
+              ],
             ),
           ),
           hintText: 'Search',
           hintStyle: TextStyle(
-            color: Colors.white.withOpacity(0.9),
+            color: Colors.white.withOpacity(0.5),
             fontSize: 18,
           ),
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 14.0,
-            horizontal: 16,
-          ),
-          suffixIcon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                height: 35,
-                width: 1,
-                color: Colors.white.withOpacity(0.5),
-                margin: const EdgeInsets.only(right: 17),
-              ),
-              SvgPicture.asset(
-                'assets/svgs/void.svg',
-                height: 22,
-                width: 22,
-                fit: BoxFit.fill,
-              ),
-              const SizedBox(width: 17),
-            ],
-          ),
+          alignLabelWithHint: false,
         ),
+        style: TextStyle(color: Colors.white, fontSize: 18),
+        onTap: () => {},
       ),
     );
   }
