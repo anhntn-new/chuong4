@@ -1,5 +1,6 @@
+import 'package:chuong4/config/custom_router.dart';
+import 'package:chuong4/config/route_paths.dart';
 import 'package:chuong4/unit_5/app.dart';
-import 'package:chuong4/unit_5/view/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,14 +22,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const MyHomePage(),
-      initialRoute: '/',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const MyHomePage(),
-        // '/home': (context) => const Home(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/detail': (context) => const DetailPage(),
-      },
+      initialRoute: RoutePaths.App,
+      onGenerateRoute: CustomRouter.onGenerateRoute,
+      // routes: {
+      //   '/': (context) => const MyHomePage(),
+      //   // '/home': (context) => const Home(),
+      //   '/detail': (context) => const DetailPage(),
+      // },
     );
   }
 }
