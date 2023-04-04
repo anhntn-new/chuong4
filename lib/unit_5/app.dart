@@ -1,4 +1,5 @@
 import 'package:chuong4/unit_5/common/app_colors.dart';
+import 'package:chuong4/unit_5/widget/tab_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -42,8 +43,6 @@ class _AppState extends State<App> {
         primary: false,
         body: WillPopScope(
           onWillPop: () async {
-            // This is when you want to remove all the pages from the
-            // stack for the specific BottomNav item.
             navigatorKeys[selectedItem]
                 ?.currentState
                 ?.popUntil((route) => route.isFirst);
@@ -62,8 +61,6 @@ class _AppState extends State<App> {
                 .toList(),
           ),
         ),
-        // _widgetOptions.elementAt(_selectedIndex),
-        // extendBody: true,
         bottomNavigationBar: SizedBox(
           height: 64,
           child: Stack(
