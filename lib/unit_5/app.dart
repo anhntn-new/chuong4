@@ -1,6 +1,4 @@
 import 'package:chuong4/unit_5/common/app_colors.dart';
-import 'package:chuong4/unit_5/view/home_page.dart';
-import 'package:chuong4/unit_5/view/other_page.dart';
 import 'package:chuong4/widget/tab_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,14 +28,6 @@ class _AppState extends State<App> {
     3: Icons.account_circle,
     4: Icons.account_circle,
   };
-
-  static const List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    OtherPage(),
-    OtherPage(),
-    OtherPage(),
-    OtherPage(),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
