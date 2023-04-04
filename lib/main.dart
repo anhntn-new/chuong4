@@ -1,4 +1,3 @@
-import 'package:chuong4/unit_5/app.dart';
 import 'package:chuong4/unit_5/config/custom_router.dart';
 import 'package:chuong4/unit_5/config/route_paths.dart';
 import 'package:flutter/material.dart';
@@ -26,48 +25,6 @@ class MyApp extends StatelessWidget {
       //   // '/home': (context) => const Home(),
       //   '/detail': (context) => const DetailPage(),
       // },
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => App()),
-                  );
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  width: double.infinity,
-                  color: Colors.lightBlue,
-                  child: const Text('Chuong 5'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
