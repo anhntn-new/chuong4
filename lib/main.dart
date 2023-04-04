@@ -1,5 +1,7 @@
-import 'package:chuong4/unit1/app.dart';
+import 'package:chuong4/unit_5/config/custom_router.dart';
+import 'package:chuong4/unit_5/config/route_paths.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,16 +9,22 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      initialRoute: RoutePaths.App,
+      onGenerateRoute: CustomRouter.onGenerateRoute,
+      // routes: {
+      //   '/': (context) => const MyHomePage(),
+      //   // '/home': (context) => const Home(),
+      //   '/detail': (context) => const DetailPage(),
+      // },
     );
   }
 }
