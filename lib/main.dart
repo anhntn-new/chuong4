@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: RoutePaths.App,
+      initialRoute: RoutePaths.Splash,
       onGenerateRoute: CustomRouter.onGenerateRoute,
       // routes: {
       //   '/': (context) => const MyHomePage(),
