@@ -1,12 +1,11 @@
-import 'package:chuong4/config/route_paths.dart';
 import 'package:chuong4/unit_5/app.dart';
+import 'package:chuong4/unit_5/config/route_paths.dart';
 import 'package:chuong4/unit_5/view/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomRouter {
   static Route onGenerateRoute(RouteSettings settings) {
-    print('Route: ${settings.name}');
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
@@ -15,12 +14,12 @@ class CustomRouter {
 
       case RoutePaths.App:
         return CupertinoPageRoute(
-            builder: (context) => App(),
+            builder: (context) => const App(),
             settings: const RouteSettings(name: RoutePaths.App));
 
       case RoutePaths.Home:
         return CupertinoPageRoute(
-            builder: (context) => Home(),
+            builder: (context) => const Home(),
             settings: const RouteSettings(name: RoutePaths.Home));
 
       default:
@@ -29,7 +28,6 @@ class CustomRouter {
   }
 
   static Route onGenerateNestedRoute(RouteSettings settings) {
-    print('Nested Route: ${settings.name}');
     // this is where you define the nested routes.
     switch (settings.name) {
       default:

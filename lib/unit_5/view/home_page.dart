@@ -73,7 +73,6 @@ class _HomeState extends State<Home> {
       layout: SwiperLayout.DEFAULT,
       itemHeight: 215, //using with SwiperLayout.CUSTOM
       itemWidth: 145,
-
       transformer: ScaleAndFadeTransformer(),
       customLayoutOption: CustomLayoutOption(
         startIndex: 0,
@@ -87,27 +86,7 @@ class _HomeState extends State<Home> {
         const Offset(170.0, 0.0)
       ]).addOpacity([0.5, 1.0, 0.5]),
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.25),
-                spreadRadius: 0,
-                blurRadius: 15,
-                offset: const Offset(4, 4), // changes position of shadow
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(30),
-            child: Image.asset(
-              'assets/imgs/merric.png',
-              width: 145,
-              fit: BoxFit.cover,
-            ),
-          ),
-        );
+        return buildItemSwiper2();
       },
       pagination: SwiperPagination(
         margin: const EdgeInsets.only(top: 17),
@@ -122,37 +101,65 @@ class _HomeState extends State<Home> {
     );
   }
 
+  Widget buildItemSwiper2() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            spreadRadius: 0,
+            blurRadius: 15,
+            offset: const Offset(4, 4), // changes position of shadow
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30),
+        child: Image.asset(
+          'assets/imgs/merric.png',
+          width: 145,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
   Widget buildMenu(double widthDimen, double heightDimen) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         buildMenuItem(
-            icon: 'assets/svgs/genres.svg',
-            title: 'Genres',
-            iconSize: 31.0,
-            heightDimen: heightDimen,
-            widthDimen: widthDimen),
+          icon: 'assets/svgs/genres.svg',
+          title: 'Genres',
+          iconSize: 31.0,
+          heightDimen: heightDimen,
+          widthDimen: widthDimen,
+        ),
         const SizedBox(width: 18),
         buildMenuItem(
-            icon: 'assets/svgs/tv_series.svg',
-            title: 'TV Series',
-            iconSize: 34.0,
-            heightDimen: heightDimen,
-            widthDimen: widthDimen),
+          icon: 'assets/svgs/tv_series.svg',
+          title: 'TV Series',
+          iconSize: 34.0,
+          heightDimen: heightDimen,
+          widthDimen: widthDimen,
+        ),
         const SizedBox(width: 18),
         buildMenuItem(
-            icon: 'assets/svgs/movies.svg',
-            title: 'Movies',
-            iconSize: 42.0,
-            heightDimen: heightDimen,
-            widthDimen: widthDimen),
+          icon: 'assets/svgs/movies.svg',
+          title: 'Movies',
+          iconSize: 42.0,
+          heightDimen: heightDimen,
+          widthDimen: widthDimen,
+        ),
         const SizedBox(width: 18),
         buildMenuItem(
-            icon: 'assets/svgs/theatre.svg',
-            title: 'In Theatre',
-            iconSize: 36.0,
-            heightDimen: heightDimen,
-            widthDimen: widthDimen)
+          icon: 'assets/svgs/theatre.svg',
+          title: 'In Theatre',
+          iconSize: 36.0,
+          heightDimen: heightDimen,
+          widthDimen: widthDimen,
+        )
       ],
     );
   }
@@ -206,7 +213,7 @@ class _HomeState extends State<Home> {
             // Navigator.pushNamed(context, '/detail');
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => DetailPage(),
+                builder: (_) => const DetailPage(),
               ),
             );
           },
@@ -282,7 +289,6 @@ class _HomeState extends State<Home> {
 
   Widget buildPagination(SwiperPluginConfig config) {
     return SizedBox(
-      // padding: EdgeInsets.only(top: 0),
       height: 8,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
@@ -367,7 +373,10 @@ class _HomeState extends State<Home> {
           ),
           alignLabelWithHint: false,
         ),
-        style: const TextStyle(color: Colors.white, fontSize: 18),
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+        ),
         onTap: () => {},
       ),
     );
