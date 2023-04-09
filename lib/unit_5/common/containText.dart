@@ -6,12 +6,14 @@ class ContainText extends StatelessWidget {
   final String title;
   final Gradient? backGroundGradient;
   final bool? isPoint;
+  final num? point;
 
   const ContainText({
     Key? key,
     required this.title,
     this.backGroundGradient,
     this.isPoint,
+    this.point,
   }) : super(key: key);
 
   @override
@@ -60,9 +62,9 @@ class ContainText extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 4),
-        const Text(
-          '8.5',
-          style: TextStyle(
+        Text(
+          point.toString(),
+          style: const TextStyle(
             color: AppColors.black,
             fontWeight: FontWeight.w800,
             fontSize: 6,

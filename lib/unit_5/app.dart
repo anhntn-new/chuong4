@@ -37,6 +37,9 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Map;
+    print('🍎🍎🍎🍎 agrument --    ${args['userName']}');
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
@@ -54,7 +57,8 @@ class _AppState extends State<App> {
                 .map(
                   (item, _) => MapEntry(
                     item,
-                    _buildOffstageNavigator(item, item == (selectedItem)),
+                    _buildOffstageNavigator(
+                        item, item == (selectedItem), args['userName']),
                   ),
                 )
                 .values
@@ -266,12 +270,14 @@ class _AppState extends State<App> {
         );
   }
 
-  Widget _buildOffstageNavigator(int currentItem, bool isSelected) {
+  Widget _buildOffstageNavigator(
+      int currentItem, bool isSelected, String userName) {
     return Offstage(
       offstage: !isSelected,
       child: TabNavigator(
         navigatorKey: navigatorKeys[currentItem]!,
         index: currentItem,
+        userName: userName,
       ),
     );
   }

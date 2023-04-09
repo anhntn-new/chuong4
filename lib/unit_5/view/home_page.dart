@@ -1,18 +1,29 @@
 import 'package:chuong4/unit_5/common/app_colors.dart';
 import 'package:chuong4/unit_5/common/containText.dart';
+import 'package:chuong4/unit_5/modal/movie_modal.dart';
+import 'package:chuong4/unit_5/services/services.dart';
 import 'package:chuong4/unit_5/view/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final String userName;
+  const Home({Key? key, required this.userName}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  List<Movie>? listMoviePopular;
+  List<Movie>? listMovieUpComing;
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double widthDimen = MediaQuery.of(context).size.width;
@@ -42,7 +53,11 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 15),
             SizedBox(
               height: heightDimen * (160 / 926),
-              child: buildSwiper(),
+              child: listMoviePopular != null
+                  ? buildSwiper()
+                  : const Center(
+                      child: CircularProgressIndicator(),
+                    ),
             ),
             const SizedBox(height: 20),
             buildMenu(widthDimen, heightDimen),
@@ -59,7 +74,13 @@ class _HomeState extends State<Home> {
               ),
             ),
             const SizedBox(height: 15),
-            Expanded(child: buildSwiper2()),
+            Expanded(
+              child: listMovieUpComing != null
+                  ? buildSwiper2()
+                  : const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+            ),
             const SizedBox(height: 20),
           ],
         ),
@@ -69,7 +90,7 @@ class _HomeState extends State<Home> {
 
   Widget buildSwiper2() {
     return Swiper(
-      itemCount: 4,
+      itemCount: 6,
       layout: SwiperLayout.DEFAULT,
       itemHeight: 215, //using with SwiperLayout.CUSTOM
       itemWidth: 145,
@@ -86,7 +107,7 @@ class _HomeState extends State<Home> {
         const Offset(170.0, 0.0)
       ]).addOpacity([0.5, 1.0, 0.5]),
       itemBuilder: (BuildContext context, int index) {
-        return buildItemSwiper2();
+        return buildItemSwiper2(index);
       },
       pagination: SwiperPagination(
         margin: const EdgeInsets.only(top: 17),
@@ -101,7 +122,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget buildItemSwiper2() {
+  Widget buildItemSwiper2(int index) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
@@ -116,8 +137,8 @@ class _HomeState extends State<Home> {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
-        child: Image.asset(
-          'assets/imgs/merric.png',
+        child: Image.network(
+          '${Services.baseImg}${listMoviePopular?[index].posterPath}',
           width: 145,
           fit: BoxFit.cover,
         ),
@@ -206,14 +227,18 @@ class _HomeState extends State<Home> {
 
   Widget buildSwiper() {
     return Swiper(
-      itemCount: 4,
+      itemCount: 6,
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () {
-            // Navigator.pushNamed(context, '/detail');
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => const DetailPage(),
+                builder: (_) => DetailPage(
+                  id: listMoviePopular?[index].id ?? 616037,
+                ),
+                settings: RouteSettings(
+                  arguments: {'movie': listMoviePopular?[index]},
+                ),
               ),
             );
           },
@@ -234,8 +259,8 @@ class _HomeState extends State<Home> {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(
-                    "assets/imgs/deadpool.png",
+                  Image.network(
+                    '${Services.baseImg}${listMoviePopular?[index].backdropPath}',
                     fit: BoxFit.cover,
                   ),
                   Container(
@@ -251,17 +276,22 @@ class _HomeState extends State<Home> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: const [
-                          Text(
-                            'Deadpool 2',
-                            style: TextStyle(
-                              color: AppColors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              listMoviePopular?[index].title ?? '',
+                              style: const TextStyle(
+                                color: AppColors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           ContainText(
                             title: '',
+                            point: listMoviePopular?[index].voteAverage,
                             isPoint: true,
                           )
                         ],
@@ -294,7 +324,7 @@ class _HomeState extends State<Home> {
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: 4,
+        itemCount: 6,
         itemBuilder: (context, index) => Container(
           height: 8,
           width: 8,
@@ -397,16 +427,16 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           RichText(
-            text: const TextSpan(
+            text: TextSpan(
               text: 'Hello, ',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
               ),
               children: <TextSpan>[
                 TextSpan(
-                  text: 'Jane!',
-                  style: TextStyle(
+                  text: widget.userName,
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -421,5 +451,20 @@ class _HomeState extends State<Home> {
         ],
       ),
     );
+  }
+
+  void init() async {
+    List<Movie>? list = await Services.getMoviePopular();
+    if (list != null) {
+      setState(() {
+        listMoviePopular = list;
+      });
+    }
+    List<Movie>? listUp = await Services.getMovieUpcoming();
+    if (list != null) {
+      setState(() {
+        listMovieUpComing = listUp;
+      });
+    }
   }
 }

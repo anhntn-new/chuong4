@@ -1,11 +1,15 @@
 import 'package:chuong4/unit_5/common/app_colors.dart';
 import 'package:chuong4/unit_5/common/cast_item.dart';
 import 'package:chuong4/unit_5/common/containText.dart';
+import 'package:chuong4/unit_5/modal/movie_modal.dart';
+import 'package:chuong4/unit_5/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({Key? key}) : super(key: key);
+  final num id;
+
+  const DetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -13,29 +17,51 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   bool showMore = false;
+  Movie? movie;
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    Map agr = ModalRoute.of(context)!.settings.arguments as Map;
+    movie = agr['movie'] as Movie;
+
     return Scaffold(
-      body: Stack(
-        children: [
-          buildBackground(),
-          buildDetailMovie(context),
-        ],
-      ),
+      body: movie != null
+          ? Stack(
+              children: [
+                buildBackground(movie!),
+                buildDetailMovie(context, movie!),
+              ],
+            )
+          : const Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 
-  Widget buildDetailMovie(BuildContext context) {
+  void init() async {
+    Movie? mv = await Services.getMovieDetail(id: widget.id ?? 677179);
+    setState(() {
+      movie = mv;
+    });
+  }
+
+  Widget buildDetailMovie(BuildContext context, Movie mv) {
     return CustomScrollView(
       physics: const ClampingScrollPhysics(),
       slivers: [
         buildAppBar(context),
-        buildInformation(),
+        buildInformation(movie!),
       ],
     );
   }
 
-  Widget buildInformation() {
+  Widget buildInformation(Movie mv) {
     return SliverToBoxAdapter(
       child: Container(
         decoration: const BoxDecoration(
@@ -67,41 +93,47 @@ class _DetailPageState extends State<DetailPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              const Align(
+              Align(
                 alignment: Alignment.center,
                 child: Text(
-                  'Thor',
-                  style: TextStyle(
+                  mv.title ?? '',
+                  style: const TextStyle(
                     color: AppColors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 64,
+                    fontSize: 50,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              Align(
-                child: Text(
-                  'The Dark World',
-                  style: TextStyle(
-                    color: AppColors.white.withOpacity(0.5),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
+              mv.originalTitle != mv.title
+                  ? Align(
+                      child: Text(
+                        mv.originalTitle ?? '',
+                        style: TextStyle(
+                          color: AppColors.white.withOpacity(0.5),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
               const SizedBox(height: 29),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: const [
-                      ContainText(
+                    children: [
+                      const ContainText(
                         title: 'Action',
                       ),
-                      SizedBox(width: 10),
-                      ContainText(title: '16+'),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
+                      mv.adult ?? false
+                          ? const ContainText(title: '16+')
+                          : const SizedBox(),
+                      mv.adult ?? false ? SizedBox(width: 10) : SizedBox(),
                       ContainText(
                         title: '',
+                        point: mv.voteAverage,
                         isPoint: true,
                       )
                     ],
@@ -129,16 +161,22 @@ class _DetailPageState extends State<DetailPage> {
                 children: [
                   Flexible(
                     child: RichText(
-                      maxLines: showMore ? null : 3,
-                      overflow: TextOverflow.ellipsis,
+                      // maxLines: showMore ? null : 3,
+                      // overflow: TextOverflow.ellipsis,
                       text: TextSpan(
-                        text:
-                            'When the Dark Elves attempt to plunge the universe into darkness, Thor must embark on a perilous and personal journey that will reunite him with doctor Jane Foster. ',
+                        text: '',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.75),
                           fontSize: 12,
                         ),
-                        children: const [
+                        children: [
+                          TextSpan(
+                            text: mv.overview,
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.75),
+                              fontSize: 12,
+                            ),
+                          ),
                           TextSpan(
                             text: 'More',
                             style: TextStyle(
@@ -301,12 +339,12 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  SizedBox buildBackground() {
+  SizedBox buildBackground(Movie mv) {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
       child: Image.network(
-        'https://m.media-amazon.com/images/M/MV5BMTQyNzAwOTUxOF5BMl5BanBnXkFtZTcwMTE0OTc5OQ@@._V1_FMjpg_UX770_.jpg',
+        '${Services.baseImg}${mv.posterPath}',
         fit: BoxFit.fitWidth,
         alignment: Alignment.topCenter,
       ),
