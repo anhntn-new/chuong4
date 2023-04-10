@@ -1,6 +1,6 @@
 import 'package:chuong4/unit_5/app.dart';
 import 'package:chuong4/unit_5/config/route_paths.dart';
-import 'package:chuong4/unit_5/view/home_page.dart';
+import 'package:chuong4/unit_5/view/splash/splash_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,12 +15,14 @@ class CustomRouter {
       case RoutePaths.App:
         return CupertinoPageRoute(
             builder: (context) => const App(),
-            settings: const RouteSettings(name: RoutePaths.App));
+            settings: RouteSettings(
+                name: RoutePaths.App, arguments: settings.arguments));
 
-      case RoutePaths.Home:
+      case RoutePaths.Splash:
         return CupertinoPageRoute(
-            builder: (context) => const Home(),
-            settings: const RouteSettings(name: RoutePaths.Home));
+            builder: (context) => const SplashScreen(),
+            settings: RouteSettings(
+                name: RoutePaths.Splash, arguments: settings.arguments));
 
       default:
         return _errorRoute();

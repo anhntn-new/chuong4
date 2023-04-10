@@ -38,6 +38,9 @@ dependencies:
   video_player: ^2.6.0
   youtube_player_flutter: ^8.1.2
   flutter_swiper_null_safety: ^1.0.2
+  http: ^0.13.5
+  shared_preferences: ^2.1.0
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

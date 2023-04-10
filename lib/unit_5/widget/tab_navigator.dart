@@ -8,11 +8,13 @@ class TabNavigator extends StatelessWidget {
 
   final GlobalKey<NavigatorState> navigatorKey;
   final int index;
+  final String? userName;
 
   const TabNavigator({
     Key? key,
     required this.navigatorKey,
     required this.index,
+    this.userName,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -23,8 +25,9 @@ class TabNavigator extends StatelessWidget {
       onGenerateInitialRoutes: (_, initialRoute) {
         return [
           MaterialPageRoute(
-              settings: const RouteSettings(name: tabNavigatorRoot),
-              builder: (context) => routeBuilders[initialRoute]!(context))
+            settings: const RouteSettings(name: tabNavigatorRoot),
+            builder: (context) => routeBuilders[initialRoute]!(context),
+          )
         ];
       },
       onGenerateRoute: CustomRouter.onGenerateNestedRoute,
@@ -38,7 +41,7 @@ class TabNavigator extends StatelessWidget {
   _getScreen(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return const Home();
+        return Home(userName: userName ?? '');
       case 1:
         return const OtherPage();
       case 2:
