@@ -1,15 +1,16 @@
+import 'package:chuong4/unit_5/app_provider.dart';
 import 'package:chuong4/unit_5/common/app_colors.dart';
 import 'package:chuong4/unit_5/common/containText.dart';
 import 'package:chuong4/unit_5/modal/movie_modal.dart';
 import 'package:chuong4/unit_5/services/services.dart';
-import 'package:chuong4/unit_5/view/detail_page.dart';
+import 'package:chuong4/unit_5/view/detail/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
-  final String userName;
-  const Home({Key? key, required this.userName}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -435,7 +436,7 @@ class _HomeState extends State<Home> {
               ),
               children: <TextSpan>[
                 TextSpan(
-                  text: widget.userName,
+                  text: context.read<AppProvider>().userName,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),

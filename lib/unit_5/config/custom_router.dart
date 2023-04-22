@@ -22,7 +22,9 @@ class CustomRouter {
         return CupertinoPageRoute(
             builder: (context) => const SplashScreen(),
             settings: RouteSettings(
-                name: RoutePaths.Splash, arguments: settings.arguments));
+              name: RoutePaths.Splash,
+              arguments: settings.arguments,
+            ));
 
       default:
         return _errorRoute();

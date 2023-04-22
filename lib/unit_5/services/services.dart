@@ -32,28 +32,6 @@ class Services {
     }
   }
 
-  static Future<bool> checkLogin() async {
-    final client = http.Client();
-
-    try {
-      String? token2 = await SharedPreference.getToken2();
-      if ((token2 != null) && token2 != '') {
-        String? dueDate = await SharedPreference.getDueDate();
-        if ((dueDate != null) && dueDate != '') {
-          DateTime date =
-              DateFormat("yyyy-MM-dd HH:mm:ss").parse(dueDate, true);
-          bool compare = date.isAfter(DateTime.now());
-          return compare;
-        }
-        return false;
-      } else {
-        return false;
-      }
-    } finally {
-      client.close();
-    }
-  }
-
   static Future<String?> requestToken2(String token) async {
     final client = http.Client();
 
@@ -243,6 +221,21 @@ class Services {
       return null;
     } finally {
       client.close();
+    }
+  }
+
+  static Future<bool> checkLogin() async {
+    String? token2 = await SharedPreference.getToken2();
+    if ((token2 != null) && token2 != '') {
+      String? dueDate = await SharedPreference.getDueDate();
+      if ((dueDate != null) && dueDate != '') {
+        DateTime date = DateFormat("yyyy-MM-dd HH:mm:ss").parse(dueDate, true);
+        bool compare = date.isAfter(DateTime.now());
+        return compare;
+      }
+      return false;
+    } else {
+      return false;
     }
   }
 }

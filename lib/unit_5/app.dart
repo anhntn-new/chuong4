@@ -37,8 +37,6 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as Map;
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
@@ -58,7 +56,6 @@ class _AppState extends State<App> {
                   _buildOffstageNavigator(
                     item,
                     item == (selectedItem),
-                    args['userName'],
                   ),
                 ),
               )
@@ -171,13 +168,14 @@ class _AppState extends State<App> {
   }
 
   Widget _buildOffstageNavigator(
-      int currentItem, bool isSelected, String userName) {
+    int currentItem,
+    bool isSelected,
+  ) {
     return Offstage(
       offstage: !isSelected,
       child: TabNavigator(
         navigatorKey: navigatorKeys[currentItem]!,
         index: currentItem,
-        userName: userName,
       ),
     );
   }

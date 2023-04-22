@@ -1,5 +1,5 @@
 import 'package:chuong4/unit_5/config/custom_router.dart';
-import 'package:chuong4/unit_5/view/home_page.dart';
+import 'package:chuong4/unit_5/view/home/home_page.dart';
 import 'package:chuong4/unit_5/view/other_page.dart';
 import 'package:flutter/material.dart';
 
@@ -8,13 +8,11 @@ class TabNavigator extends StatelessWidget {
 
   final GlobalKey<NavigatorState> navigatorKey;
   final int index;
-  final String? userName;
 
   const TabNavigator({
     Key? key,
     required this.navigatorKey,
     required this.index,
-    this.userName,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -41,7 +39,7 @@ class TabNavigator extends StatelessWidget {
   _getScreen(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return Home(userName: userName ?? '');
+        return Home();
       case 1:
         return const OtherPage();
       case 2:

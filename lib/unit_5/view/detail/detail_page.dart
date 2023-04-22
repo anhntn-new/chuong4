@@ -45,7 +45,7 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   void init() async {
-    Movie? mv = await Services.getMovieDetail(id: widget.id ?? 677179);
+    Movie? mv = await Services.getMovieDetail(id: widget.id);
     setState(() {
       movie = mv;
     });
@@ -177,7 +177,7 @@ class _DetailPageState extends State<DetailPage> {
                               fontSize: 12,
                             ),
                           ),
-                          TextSpan(
+                          const TextSpan(
                             text: 'More',
                             style: TextStyle(
                               color: AppColors.lightBlue,
