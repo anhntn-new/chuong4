@@ -39,20 +39,27 @@ class SplashPageState extends State<SplashPage> {
     AppProvider appProvider = Provider.of<AppProvider>(context);
 
     return Scaffold(
-      body: Center(
+      body: SafeArea(
         child: Consumer<SplashProvider>(
           builder: (context, provider, child) {
             return Container(
-              color: Colors.green,
-              height: 40,
-              width: 100,
+              alignment: Alignment.center,
               child: provider.isLoading
                   ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        CircularProgressIndicator(),
+                        const SizedBox(
+                          height: 30,
+                          width: 30,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
                         Text(
                           provider.process,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.w500,
                           ),
@@ -63,9 +70,15 @@ class SplashPageState extends State<SplashPage> {
                       onTap: () async {
                         login(provider, appProvider);
                       },
-                      child: Text(
-                        'Tap to start',
-                        style: TextStyle(color: Colors.black),
+                      child: Container(
+                        color: Colors.green,
+                        height: 30,
+                        alignment: Alignment.center,
+                        width: 100,
+                        child: const Text(
+                          'Tap to start',
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                     ),
             );
@@ -77,6 +90,7 @@ class SplashPageState extends State<SplashPage> {
 
   void login(SplashProvider provider, AppProvider appProvider) async {
     try {
+      provider.setIsLoading(true);
       provider.setProcess('CheckLogin');
       // Future.delayed(const Duration(seconds: 2), () async {
       //   bool isLogin = await Services.checkLogin();
@@ -103,35 +117,29 @@ class SplashPageState extends State<SplashPage> {
       } else {
         String? session;
         String userName = '';
-        Future.delayed(const Duration(seconds: 1), () async {
-          provider.setProcess('Not login');
-        });
+        Future.delayed(const Duration(seconds: 2), () async {});
         provider.setProcess('Request permission connect database...');
         String? token = '';
-        Future.delayed(const Duration(seconds: 2), () async {
-          token = await Services.requestToken();
-        });
+        token = await Services.requestToken();
 
         if (token != null && token != '') {
           provider.setProcess('Login to account ANHNTN');
-          String? token2 = '';
-          Future.delayed(const Duration(seconds: 1), () async {
-            token2 = await Services.requestToken2(token!);
-          });
+          String? token2 = await Services.requestToken2(token!);
           if (token2 != null && token2 != '') {
             session = await Services.requestSession(token2!);
             if (session != null && session != '') {
               userName = await Services.getUserInfo(session);
               appProvider.setUserName(userName);
-              provider.setProcess('Had login to ANHNTN');
-              Future.delayed(
-                const Duration(milliseconds: 2000),
-                () {
-                  provider.setIsLoading(false);
-                  Navigator.pushReplacementNamed(context, RoutePaths.App);
-                },
-              );
+              provider.setProcess('Login to ANHNTN - done');
+              Future.delayed(const Duration(seconds: 2), () {
+                provider.setIsLoading(false);
+                Navigator.pushReplacementNamed(context, RoutePaths.App);
+              });
+            } else {
+              provider.setProcess('❌ ERROR request session ');
             }
+          } else {
+            provider.setProcess('❌ ERROR request token 2');
           }
         }
       }
