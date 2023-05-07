@@ -1,5 +1,7 @@
 import 'package:chuong4/unit_5/app_provider.dart';
-import 'package:chuong4/unit_5/view/splash/splash_page.dart';
+import 'package:chuong4/unit_5/config/custom_router.dart';
+import 'package:chuong4/unit_5/config/route_paths.dart';
+import 'package:chuong4/unit_5/view/home/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,15 +21,18 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => AppProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => HomeProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const SplashScreen(),
-        // initialRoute: RoutePaths.Splash,
-        // onGenerateRoute: CustomRouter.onGenerateRoute,
+        // home: const SplashScreen(),
+        initialRoute: RoutePaths.Splash,
+        onGenerateRoute: CustomRouter.onGenerateRoute,
       ),
     );
   }

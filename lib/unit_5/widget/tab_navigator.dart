@@ -39,7 +39,7 @@ class TabNavigator extends StatelessWidget {
   _getScreen(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return Home();
+        return const Home();
       case 1:
         return const OtherPage();
       case 2:

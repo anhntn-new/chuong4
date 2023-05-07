@@ -63,106 +63,110 @@ class _AppState extends State<App> {
               .toList(),
         ),
       ),
-      bottomNavigationBar: SizedBox(
-        height: 64,
-        child: Stack(
-          fit: StackFit.loose,
-          alignment: Alignment.bottomCenter,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                gradient: AppColors.background,
-                border: Border(
-                  top: BorderSide(
-                    color: Colors.white.withOpacity(0.2),
+      bottomNavigationBar: buildBottomNavigation(),
+    );
+  }
+
+  Widget buildBottomNavigation() {
+    return SizedBox(
+      height: 64,
+      child: Stack(
+        fit: StackFit.loose,
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: AppColors.background,
+              border: Border(
+                top: BorderSide(
+                  color: Colors.white.withOpacity(0.2),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: const BoxDecoration(
+              gradient: AppColors.search,
+            ),
+            child: MediaQuery(
+              data: const MediaQueryData(
+                padding: EdgeInsets.only(
+                  bottom: 10,
+                  top: 10,
+                ), // here is the padding
+              ),
+              child: BottomNavigationBar(
+                elevation: 0.0,
+                unselectedLabelStyle: const TextStyle(fontSize: 0),
+                selectedLabelStyle: const TextStyle(fontSize: 0),
+                backgroundColor: Colors.transparent,
+                type: BottomNavigationBarType.shifting,
+                selectedFontSize: 0.0,
+                unselectedFontSize: 0.0,
+                items: [
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset('assets/svgs/home.svg'),
+                    label: 'home',
+                    backgroundColor: Colors.transparent,
+                    activeIcon: Column(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/svgs/home_shadow.svg',
+                        ),
+                        SvgPicture.asset('assets/svgs/dot.svg'),
+                      ],
+                    ),
                   ),
-                ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset('assets/svgs/heart.svg'),
+                    label: 'Home',
+                    activeIcon: Column(
+                      children: [
+                        SvgPicture.asset('assets/svgs/heart_shadow.svg'),
+                        SvgPicture.asset('assets/svgs/dot.svg'),
+                      ],
+                    ),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset('assets/svgs/ticket.svg'),
+                    label: 'Home',
+                    activeIcon: Column(
+                      children: [
+                        SvgPicture.asset('assets/svgs/ticket_shadow.svg'),
+                        SvgPicture.asset('assets/svgs/dot.svg'),
+                      ],
+                    ),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset('assets/svgs/user.svg'),
+                    label: 'Home',
+                    activeIcon: Column(
+                      children: [
+                        SvgPicture.asset('assets/svgs/user_shadow.svg'),
+                        SvgPicture.asset('assets/svgs/dot.svg'),
+                      ],
+                    ),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset('assets/svgs/shuffle.svg'),
+                    label: 'Home',
+                    activeIcon: Column(
+                      children: [
+                        SvgPicture.asset('assets/svgs/shuffle_shadow.svg'),
+                        SvgPicture.asset('assets/svgs/dot.svg'),
+                      ],
+                    ),
+                  ),
+                ],
+                onTap: (int index) {
+                  _onItemTapped(index);
+                },
+                currentIndex: selectedItem,
+                showSelectedLabels: false,
               ),
             ),
-            Container(
-              decoration: const BoxDecoration(
-                gradient: AppColors.search,
-              ),
-              child: MediaQuery(
-                data: const MediaQueryData(
-                  padding: EdgeInsets.only(
-                    bottom: 10,
-                    top: 10,
-                  ), // here is the padding
-                ),
-                child: BottomNavigationBar(
-                  elevation: 0.0,
-                  unselectedLabelStyle: const TextStyle(fontSize: 0),
-                  selectedLabelStyle: const TextStyle(fontSize: 0),
-                  backgroundColor: Colors.transparent,
-                  type: BottomNavigationBarType.shifting,
-                  selectedFontSize: 0.0,
-                  unselectedFontSize: 0.0,
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: SvgPicture.asset('assets/svgs/home.svg'),
-                      label: 'home',
-                      backgroundColor: Colors.transparent,
-                      activeIcon: Column(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/svgs/home_shadow.svg',
-                          ),
-                          SvgPicture.asset('assets/svgs/dot.svg'),
-                        ],
-                      ),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: SvgPicture.asset('assets/svgs/heart.svg'),
-                      label: 'Home',
-                      activeIcon: Column(
-                        children: [
-                          SvgPicture.asset('assets/svgs/heart_shadow.svg'),
-                          SvgPicture.asset('assets/svgs/dot.svg'),
-                        ],
-                      ),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: SvgPicture.asset('assets/svgs/ticket.svg'),
-                      label: 'Home',
-                      activeIcon: Column(
-                        children: [
-                          SvgPicture.asset('assets/svgs/ticket_shadow.svg'),
-                          SvgPicture.asset('assets/svgs/dot.svg'),
-                        ],
-                      ),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: SvgPicture.asset('assets/svgs/user.svg'),
-                      label: 'Home',
-                      activeIcon: Column(
-                        children: [
-                          SvgPicture.asset('assets/svgs/user_shadow.svg'),
-                          SvgPicture.asset('assets/svgs/dot.svg'),
-                        ],
-                      ),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: SvgPicture.asset('assets/svgs/shuffle.svg'),
-                      label: 'Home',
-                      activeIcon: Column(
-                        children: [
-                          SvgPicture.asset('assets/svgs/shuffle_shadow.svg'),
-                          SvgPicture.asset('assets/svgs/dot.svg'),
-                        ],
-                      ),
-                    ),
-                  ],
-                  onTap: (int index) {
-                    _onItemTapped(index);
-                  },
-                  currentIndex: selectedItem,
-                  showSelectedLabels: false,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

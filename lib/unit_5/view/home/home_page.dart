@@ -1,9 +1,9 @@
 import 'package:chuong4/unit_5/app_provider.dart';
 import 'package:chuong4/unit_5/common/app_colors.dart';
 import 'package:chuong4/unit_5/common/containText.dart';
-import 'package:chuong4/unit_5/modal/movie_modal.dart';
 import 'package:chuong4/unit_5/services/services.dart';
 import 'package:chuong4/unit_5/view/detail/detail_page.dart';
+import 'package:chuong4/unit_5/view/home/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
@@ -17,8 +17,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Movie>? listMoviePopular;
-  List<Movie>? listMovieUpComing;
   @override
   void initState() {
     init();
@@ -52,13 +50,17 @@ class _HomeState extends State<Home> {
               ),
             ),
             const SizedBox(height: 15),
-            SizedBox(
-              height: heightDimen * (160 / 926),
-              child: listMoviePopular != null
-                  ? buildSwiper()
-                  : const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+            Consumer<HomeProvider>(
+              builder: (context, provider, child) {
+                return SizedBox(
+                  height: heightDimen * (160 / 926),
+                  child: provider.isLoadingPopular
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : buildListMoviePopular(provider),
+                );
+              },
             ),
             const SizedBox(height: 20),
             buildMenu(widthDimen, heightDimen),
@@ -75,12 +77,16 @@ class _HomeState extends State<Home> {
               ),
             ),
             const SizedBox(height: 15),
-            Expanded(
-              child: listMovieUpComing != null
-                  ? buildSwiper2()
-                  : const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+            Consumer<HomeProvider>(
+              builder: (context, provider, child) {
+                return Expanded(
+                  child: provider.isLoadingUp
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : buildListMovieUpComing(provider),
+                );
+              },
             ),
             const SizedBox(height: 20),
           ],
@@ -89,7 +95,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget buildSwiper2() {
+  Widget buildListMovieUpComing(HomeProvider provider) {
     return Swiper(
       itemCount: 6,
       layout: SwiperLayout.DEFAULT,
@@ -108,7 +114,7 @@ class _HomeState extends State<Home> {
         const Offset(170.0, 0.0)
       ]).addOpacity([0.5, 1.0, 0.5]),
       itemBuilder: (BuildContext context, int index) {
-        return buildItemSwiper2(index);
+        return buildItemPopular(index, provider);
       },
       pagination: SwiperPagination(
         margin: const EdgeInsets.only(top: 17),
@@ -123,7 +129,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget buildItemSwiper2(int index) {
+  Widget buildItemPopular(int index, HomeProvider provider) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
@@ -139,7 +145,7 @@ class _HomeState extends State<Home> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
         child: Image.network(
-          '${Services.baseImg}${listMoviePopular?[index].posterPath}',
+          '${Services.baseImg}${provider.listMoviePopular?[index].posterPath}',
           width: 145,
           fit: BoxFit.cover,
         ),
@@ -226,7 +232,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget buildSwiper() {
+  Widget buildListMoviePopular(HomeProvider provider) {
     return Swiper(
       itemCount: 6,
       itemBuilder: (BuildContext context, int index) {
@@ -235,10 +241,10 @@ class _HomeState extends State<Home> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => DetailPage(
-                  id: listMoviePopular?[index].id ?? 616037,
+                  id: provider.listMoviePopular?[index].id ?? 616037,
                 ),
                 settings: RouteSettings(
-                  arguments: {'movie': listMoviePopular?[index]},
+                  arguments: {'movie': provider.listMoviePopular?[index]},
                 ),
               ),
             );
@@ -261,7 +267,7 @@ class _HomeState extends State<Home> {
                 fit: StackFit.expand,
                 children: [
                   Image.network(
-                    '${Services.baseImg}${listMoviePopular?[index].backdropPath}',
+                    '${Services.baseImg}${provider.listMoviePopular?[index].backdropPath}',
                     fit: BoxFit.cover,
                   ),
                   Container(
@@ -280,7 +286,7 @@ class _HomeState extends State<Home> {
                         children: [
                           Expanded(
                             child: Text(
-                              listMoviePopular?[index].title ?? '',
+                              provider.listMoviePopular?[index].title ?? '',
                               style: const TextStyle(
                                 color: AppColors.white,
                                 fontSize: 18,
@@ -292,7 +298,8 @@ class _HomeState extends State<Home> {
                           ),
                           ContainText(
                             title: '',
-                            point: listMoviePopular?[index].voteAverage,
+                            point:
+                                provider.listMoviePopular?[index].voteAverage,
                             isPoint: true,
                           )
                         ],
@@ -455,17 +462,6 @@ class _HomeState extends State<Home> {
   }
 
   void init() async {
-    List<Movie>? list = await Services.getMoviePopular();
-    if (list != null) {
-      setState(() {
-        listMoviePopular = list;
-      });
-    }
-    List<Movie>? listUp = await Services.getMovieUpcoming();
-    if (list != null) {
-      setState(() {
-        listMovieUpComing = listUp;
-      });
-    }
+    context.read<HomeProvider>().getListInit();
   }
 }

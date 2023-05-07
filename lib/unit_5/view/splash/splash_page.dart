@@ -92,17 +92,12 @@ class SplashPageState extends State<SplashPage> {
     try {
       provider.setIsLoading(true);
       provider.setProcess('CheckLogin');
-      // Future.delayed(const Duration(seconds: 2), () async {
-      //   bool isLogin = await Services.checkLogin();
-      // });
       bool isLogin = await Services.checkLogin();
       if (isLogin == true) {
         Future.delayed(const Duration(seconds: 1), () async {
           provider.setProcess('Already login');
         });
-
         String? session = await SharedPreference.getSession();
-
         provider.setProcess('Get user info ....');
         String userName = '';
         Future.delayed(const Duration(seconds: 2), () async {
@@ -112,7 +107,7 @@ class SplashPageState extends State<SplashPage> {
         });
         Future.delayed(const Duration(seconds: 1), () {
           provider.setIsLoading(false);
-          Navigator.pushReplacementNamed(context, RoutePaths.App);
+          Navigator.pushNamed(context, RoutePaths.App);
         });
       } else {
         String? session;
@@ -133,7 +128,7 @@ class SplashPageState extends State<SplashPage> {
               provider.setProcess('Login to ANHNTN - done');
               Future.delayed(const Duration(seconds: 2), () {
                 provider.setIsLoading(false);
-                Navigator.pushReplacementNamed(context, RoutePaths.App);
+                Navigator.pushNamed(context, RoutePaths.App);
               });
             } else {
               provider.setProcess('❌ ERROR request session ');
