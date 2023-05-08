@@ -3,22 +3,21 @@ import 'package:chuong4/unit_5/common/cast_item.dart';
 import 'package:chuong4/unit_5/common/containText.dart';
 import 'package:chuong4/unit_5/modal/movie_modal.dart';
 import 'package:chuong4/unit_5/services/services.dart';
+import 'package:chuong4/unit_5/view/detail/detail_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class DetailPage extends StatefulWidget {
-  final num id;
-
-  const DetailPage({Key? key, required this.id}) : super(key: key);
+  const DetailPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<DetailPage> createState() => _DetailPageState();
 }
 
 class _DetailPageState extends State<DetailPage> {
-  bool showMore = false;
-  Movie? movie;
-
   @override
   void initState() {
     init();
@@ -27,28 +26,28 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    Map agr = ModalRoute.of(context)!.settings.arguments as Map;
-    movie = agr['movie'] as Movie;
-
-    return Scaffold(
-      body: movie != null
-          ? Stack(
-              children: [
-                buildBackground(movie!),
-                buildDetailMovie(context, movie!),
-              ],
-            )
-          : const Center(
-              child: CircularProgressIndicator(),
-            ),
+    return Consumer<DetailProvider>(
+      builder: (context, provider, child) {
+        return Scaffold(
+          body: !provider.isLoading
+              ? Stack(
+                  children: [
+                    buildBackground(provider.movie ?? Movie()),
+                    buildDetailMovie(context, provider.movie ?? Movie()),
+                  ],
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                ),
+        );
+      },
     );
   }
 
   void init() async {
-    Movie? mv = await Services.getMovieDetail(id: widget.id);
-    setState(() {
-      movie = mv;
-    });
+    Map agr = ModalRoute.of(context)!.settings.arguments as Map;
+    num id = agr['id'];
+    await context.read<DetailProvider>().init(id);
   }
 
   Widget buildDetailMovie(BuildContext context, Movie mv) {
@@ -56,7 +55,7 @@ class _DetailPageState extends State<DetailPage> {
       physics: const ClampingScrollPhysics(),
       slivers: [
         buildAppBar(context),
-        buildInformation(movie!),
+        buildInformation(mv),
       ],
     );
   }
@@ -130,7 +129,9 @@ class _DetailPageState extends State<DetailPage> {
                       mv.adult ?? false
                           ? const ContainText(title: '16+')
                           : const SizedBox(),
-                      mv.adult ?? false ? SizedBox(width: 10) : SizedBox(),
+                      mv.adult ?? false
+                          ? const SizedBox(width: 10)
+                          : const SizedBox(),
                       ContainText(
                         title: '',
                         point: mv.voteAverage,

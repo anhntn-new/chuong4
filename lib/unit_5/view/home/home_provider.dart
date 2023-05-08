@@ -10,7 +10,7 @@ class HomeProvider with ChangeNotifier {
 
   Future<void> getListInit() async {
     isLoadingPopular = true;
-    notifyListeners();
+    // notifyListeners();
     List<Movie>? list = await Services.getMoviePopular();
     setListMoviePopular(list);
     isLoadingPopular = false;

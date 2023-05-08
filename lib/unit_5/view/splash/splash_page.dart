@@ -119,9 +119,9 @@ class SplashPageState extends State<SplashPage> {
 
         if (token != null && token != '') {
           provider.setProcess('Login to account ANHNTN');
-          String? token2 = await Services.requestToken2(token!);
+          String? token2 = await Services.requestToken2(token);
           if (token2 != null && token2 != '') {
-            session = await Services.requestSession(token2!);
+            session = await Services.requestSession(token2);
             if (session != null && session != '') {
               userName = await Services.getUserInfo(session);
               appProvider.setUserName(userName);

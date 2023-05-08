@@ -1,6 +1,7 @@
 import 'package:chuong4/unit_5/app_provider.dart';
 import 'package:chuong4/unit_5/config/custom_router.dart';
 import 'package:chuong4/unit_5/config/route_paths.dart';
+import 'package:chuong4/unit_5/view/detail/detail_provider.dart';
 import 'package:chuong4/unit_5/view/home/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => HomeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DetailProvider(),
         ),
       ],
       child: MaterialApp(

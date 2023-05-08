@@ -240,11 +240,9 @@ class _HomeState extends State<Home> {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => DetailPage(
-                  id: provider.listMoviePopular?[index].id ?? 616037,
-                ),
+                builder: (_) => DetailPage(),
                 settings: RouteSettings(
-                  arguments: {'movie': provider.listMoviePopular?[index]},
+                  arguments: {'id': provider.listMoviePopular?[index].id},
                 ),
               ),
             );
