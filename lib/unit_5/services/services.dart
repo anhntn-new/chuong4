@@ -22,7 +22,7 @@ class Services {
           Uri.https('$baseApi', '${Api.apiRequestToken}', {'api_key': apiKey}));
       print(response.body);
       var decodedResponse = jsonDecode(response.body) as Map;
-      if (response != null && decodedResponse['success']) {
+      if (decodedResponse['success']) {
         SharedPreference.setToken(decodedResponse['request_token']);
         return decodedResponse['request_token'];
       }
@@ -72,8 +72,8 @@ class Services {
     try {
       var response = await client.post(
           Uri.https(
-            '$baseApi',
-            '${Api.apiCreateSession}',
+            baseApi,
+            Api.apiCreateSession,
             {
               'api_key': apiKey,
             },
@@ -105,7 +105,7 @@ class Services {
 
     try {
       var response =
-          await client.get(Uri.https('$baseApi', '${Api.apiGetUserInfo}', {
+          await client.get(Uri.https(baseApi, Api.apiGetUserInfo, {
         'api_key': apiKey,
         'session_id': session,
       }));
@@ -205,14 +205,15 @@ class Services {
         '${Api.apiMovieDetail}$id',
         {
           'api_key': apiKey,
-          'page': language,
+          'language': language,
         },
       ));
       print(response.body);
       var decodedResponse = jsonDecode(response.body) as Map<String, dynamic>;
       if (decodedResponse.isNotEmpty) {
         Movie movie = Movie.fromJson(decodedResponse);
-        return movie;
+        movie;
+        return Movie.fromJson(decodedResponse);
       } else {
         return null;
       }

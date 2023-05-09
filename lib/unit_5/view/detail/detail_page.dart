@@ -1,3 +1,4 @@
+import 'package:chuong4/enum/load_status.dart';
 import 'package:chuong4/unit_5/common/app_colors.dart';
 import 'package:chuong4/unit_5/common/cast_item.dart';
 import 'package:chuong4/unit_5/common/containText.dart';
@@ -7,10 +8,13 @@ import 'package:chuong4/unit_5/view/detail/detail_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DetailPage extends StatefulWidget {
+  final num id;
   const DetailPage({
     Key? key,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -20,8 +24,8 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
-    init();
     super.initState();
+    init();
   }
 
   @override
@@ -29,25 +33,27 @@ class _DetailPageState extends State<DetailPage> {
     return Consumer<DetailProvider>(
       builder: (context, provider, child) {
         return Scaffold(
-          body: !provider.isLoading
-              ? Stack(
-                  children: [
-                    buildBackground(provider.movie ?? Movie()),
-                    buildDetailMovie(context, provider.movie ?? Movie()),
-                  ],
-                )
-              : const Center(
-                  child: CircularProgressIndicator(),
-                ),
+          body: _buildBody(provider),
         );
       },
     );
   }
 
-  void init() async {
-    Map agr = ModalRoute.of(context)!.settings.arguments as Map;
-    num id = agr['id'];
-    await context.read<DetailProvider>().init(id);
+  Widget _buildBody(DetailProvider state) {
+    if (state.isLoading == LoadStatus.loading) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (state.isLoading == LoadStatus.failure) {
+      return Container(
+        color: Colors.red,
+      );
+    } else {
+      return Stack(
+        children: [
+          buildBackground(state),
+          buildDetailMovie(context, state.movie ?? Movie()),
+        ],
+      );
+    }
   }
 
   Widget buildDetailMovie(BuildContext context, Movie mv) {
@@ -122,9 +128,22 @@ class _DetailPageState extends State<DetailPage> {
                 children: [
                   Row(
                     children: [
-                      const ContainText(
-                        title: 'Action',
-                      ),
+                      mv.genres?.length != 0
+                          ? SizedBox(
+                        height: 30,
+                            child: ListView.builder(
+                              itemCount: 2,
+                              shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return ContainText(
+                                    title: mv.genres?[index].name ?? ' ',
+                                  );
+                                },
+                              ),
+                          )
+                          : const SizedBox(),
                       const SizedBox(width: 10),
                       mv.adult ?? false
                           ? const ContainText(title: '16+')
@@ -340,15 +359,28 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  SizedBox buildBackground(Movie mv) {
+  SizedBox buildBackground(DetailProvider provider) {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      child: Image.network(
-        '${Services.baseImg}${mv.posterPath}',
-        fit: BoxFit.fitWidth,
-        alignment: Alignment.topCenter,
-      ),
+      child: Image.network('${Services.baseImg}${provider.movie?.posterPath}',
+          fit: BoxFit.fitWidth, alignment: Alignment.topCenter,
+          loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return Center(
+          child: Shimmer.fromColors(
+            baseColor: Colors.white30,
+            highlightColor: Colors.white,
+            child: Container(
+              color: Colors.grey,
+            ),
+          ),
+        );
+      }),
     );
+  }
+
+  Future<void> init() async {
+    await context.read<DetailProvider>().init(widget.id);
   }
 }

@@ -1,3 +1,5 @@
+import 'package:chuong4/unit_5/modal/genres.dart';
+
 class Movie {
   bool? adult;
   String? backdropPath;
@@ -13,28 +15,45 @@ class Movie {
   bool? video;
   num? voteAverage;
   num? voteCount;
+  String? imdbId;
+  List<Genres>? genres;
+  String? homePage;
+  num? budget;
+  int? revenue;
 
-  Movie(
-      {this.adult,
-      this.backdropPath,
-      this.genreIds,
-      this.id,
-      this.originalLanguage,
-      this.originalTitle,
-      this.overview,
-      this.popularity,
-      this.posterPath,
-      this.releaseDate,
-      this.title,
-      this.video,
-      this.voteAverage,
-      this.voteCount});
+  Movie({
+    this.adult,
+    this.backdropPath,
+    this.genres,
+    this.id,
+    this.imdbId,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
+    this.homePage,
+    this.budget,
+    this.revenue,
+  });
 
   Movie.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    genreIds = json['genre_ids'].cast<int>();
+    if (json['genres'] != null) {
+      genres = [];
+      json['genres'].forEach((v) {
+        genres!.add(Genres.fromJson(v));
+      });
+    }
+    homePage = json['homepage'];
     id = json['id'];
+    imdbId = json['imdb_id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
     overview = json['overview'];
@@ -45,20 +64,28 @@ class Movie {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
+    revenue = json['revenue'];
+    budget = json['budget'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['adult'] = adult;
     data['backdrop_path'] = backdropPath;
-    data['genre_ids'] = genreIds;
+    data['budget'] = budget;
+    if (genres != null) {
+      data['genres'] = genres!.map((v) => v.toJson()).toList();
+    }
+    data['homepage'] = homePage;
     data['id'] = id;
+    data['imdb_id'] = imdbId;
     data['original_language'] = originalLanguage;
     data['original_title'] = originalTitle;
     data['overview'] = overview;
     data['popularity'] = popularity;
     data['poster_path'] = posterPath;
     data['release_date'] = releaseDate;
+    data['revenue'] = revenue;
     data['title'] = title;
     data['video'] = video;
     data['vote_average'] = voteAverage;

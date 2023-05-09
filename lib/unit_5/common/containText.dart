@@ -23,6 +23,7 @@ class ContainText extends StatelessWidget {
         horizontal: 10,
         vertical: 4,
       ),
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         gradient:
             isPoint ?? false ? null : backGroundGradient ?? AppColors.menuOpa,
@@ -38,6 +39,7 @@ class ContainText extends StatelessWidget {
   Widget buildTextHighLine() {
     return Text(
       title,
+
       style: const TextStyle(
         color: AppColors.white,
         fontSize: 12,
@@ -63,7 +65,7 @@ class ContainText extends StatelessWidget {
         ),
         const SizedBox(width: 4),
         Text(
-          point.toString(),
+          point?.toStringAsFixed(1) ?? '0.0',
           style: const TextStyle(
             color: AppColors.black,
             fontWeight: FontWeight.w800,

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -19,8 +20,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
-    init();
     super.initState();
+    init();
   }
 
   @override
@@ -148,6 +149,20 @@ class _HomeState extends State<Home> {
           '${Services.baseImg}${provider.listMoviePopular?[index].posterPath}',
           width: 145,
           fit: BoxFit.cover,
+          loadingBuilder: (context, child, loadingProgress)
+          {
+            if (loadingProgress == null) return child;
+            return Center(
+              child:
+              Shimmer.fromColors(
+                baseColor: Colors.white30,
+                highlightColor: Colors.white,
+                child: Container(
+                  color: Colors.grey,
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -240,7 +255,7 @@ class _HomeState extends State<Home> {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => DetailPage(),
+                builder: (_) =>  DetailPage(id: provider.listMoviePopular?[index].id ?? 758323),
                 settings: RouteSettings(
                   arguments: {'id': provider.listMoviePopular?[index].id},
                 ),
@@ -267,6 +282,20 @@ class _HomeState extends State<Home> {
                   Image.network(
                     '${Services.baseImg}${provider.listMoviePopular?[index].backdropPath}',
                     fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress)
+                        {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child:
+                              Shimmer.fromColors(
+                              baseColor: Colors.white30,
+                              highlightColor: Colors.white,
+                              child: Container(
+                              color: Colors.grey,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   Container(
                     decoration: const BoxDecoration(
