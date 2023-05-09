@@ -130,10 +130,10 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                       mv.genres?.length != 0
                           ? SizedBox(
-                        height: 30,
-                            child: ListView.builder(
-                              itemCount: 2,
-                              shrinkWrap: true,
+                              height: 30,
+                              child: ListView.builder(
+                                itemCount: 2,
+                                shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (context, index) {
@@ -142,7 +142,7 @@ class _DetailPageState extends State<DetailPage> {
                                   );
                                 },
                               ),
-                          )
+                            )
                           : const SizedBox(),
                       const SizedBox(width: 10),
                       mv.adult ?? false
@@ -176,97 +176,9 @@ class _DetailPageState extends State<DetailPage> {
                 ],
               ),
               const SizedBox(height: 17),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Flexible(
-                    child: RichText(
-                      // maxLines: showMore ? null : 3,
-                      // overflow: TextOverflow.ellipsis,
-                      text: TextSpan(
-                        text: '',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.75),
-                          fontSize: 12,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: mv.overview,
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.75),
-                              fontSize: 12,
-                            ),
-                          ),
-                          const TextSpan(
-                            text: 'More',
-                            style: TextStyle(
-                              color: AppColors.lightBlue,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              buildOverview(mv),
               const SizedBox(height: 20),
-              Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        'Cast',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                      Text(
-                        'See All',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: const [
-                      CastItem(
-                        realName: 'Chris Hemsworth',
-                        characterName: 'Thor',
-                      ),
-                      Spacer(),
-                      CastItem(
-                        realName: 'Chris Hemsworth',
-                        characterName: 'Thor',
-                      ),
-                      Spacer(),
-                      CastItem(
-                        realName: 'Chris Hemsworth',
-                        characterName: 'Thor',
-                      ),
-                      Spacer(),
-                      CastItem(
-                        realName: 'Chris Hemsworth',
-                        characterName: 'Thor',
-                      ),
-                      Spacer(),
-                      CastItem(
-                        realName: 'Chris Hemsworth',
-                        characterName: 'Thor',
-                      )
-                    ],
-                  )
-                ],
-              ),
+              buildCast(),
               const SizedBox(height: 20),
               const Text(
                 'Photo',
@@ -277,49 +189,147 @@ class _DetailPageState extends State<DetailPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              Expanded(
-                child: GridView.count(
-                  physics: const NeverScrollableScrollPhysics(),
-                  padding: const EdgeInsets.all(0),
-                  crossAxisSpacing: 4,
-                  mainAxisSpacing: 4,
-                  crossAxisCount: 3,
-                  children: [
-                    Image.network(
-                      'https://m.media-amazon.com/images/M/MV5BNTAwNDg2NTc5MF5BMl5BanBnXkFtZTgwMTY1NDA0MDE@._V1_FMjpg_UX1280_.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.network(
-                      'https://m.media-amazon.com/images/M/MV5BMTM5NjQ4NTA0NV5BMl5BanBnXkFtZTgwOTU1NDA0MDE@._V1_FMjpg_UX1024_.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.network(
-                      'https://m.media-amazon.com/images/M/MV5BNTAwNDg2NTc5MF5BMl5BanBnXkFtZTgwMTY1NDA0MDE@._V1_FMjpg_UX1280_.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.network(
-                      'https://m.media-amazon.com/images/M/MV5BMjI0MTAzODU3MF5BMl5BanBnXkFtZTgwMDQ3OTIxMDE@._V1_FMjpg_UX1280_.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.network(
-                      'https://m.media-amazon.com/images/M/MV5BMTQ5MTA2MzQ5NV5BMl5BanBnXkFtZTgwNTQ3OTIxMDE@._V1_FMjpg_UX1280_.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.network(
-                      'https://m.media-amazon.com/images/M/MV5BMTM3NzcxOTA2OF5BMl5BanBnXkFtZTgwNTc4OTIxMDE@._V1_FMjpg_UX1280_.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.network(
-                      'https://m.media-amazon.com/images/M/MV5BMjMzMTk1ODY4NF5BMl5BanBnXkFtZTgwMjExMDMxMDE@._V1_FMjpg_UX1024_.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ],
-                ),
-              )
+              buildPhoto()
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildPhoto() {
+    return Expanded(
+      child: GridView.count(
+        physics: const NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(0),
+        crossAxisSpacing: 4,
+        mainAxisSpacing: 4,
+        crossAxisCount: 3,
+        children: [
+          Image.network(
+            'https://m.media-amazon.com/images/M/MV5BNTAwNDg2NTc5MF5BMl5BanBnXkFtZTgwMTY1NDA0MDE@._V1_FMjpg_UX1280_.jpg',
+            fit: BoxFit.cover,
+          ),
+          Image.network(
+            'https://m.media-amazon.com/images/M/MV5BMTM5NjQ4NTA0NV5BMl5BanBnXkFtZTgwOTU1NDA0MDE@._V1_FMjpg_UX1024_.jpg',
+            fit: BoxFit.cover,
+          ),
+          Image.network(
+            'https://m.media-amazon.com/images/M/MV5BNTAwNDg2NTc5MF5BMl5BanBnXkFtZTgwMTY1NDA0MDE@._V1_FMjpg_UX1280_.jpg',
+            fit: BoxFit.cover,
+          ),
+          Image.network(
+            'https://m.media-amazon.com/images/M/MV5BMjI0MTAzODU3MF5BMl5BanBnXkFtZTgwMDQ3OTIxMDE@._V1_FMjpg_UX1280_.jpg',
+            fit: BoxFit.cover,
+          ),
+          Image.network(
+            'https://m.media-amazon.com/images/M/MV5BMTQ5MTA2MzQ5NV5BMl5BanBnXkFtZTgwNTQ3OTIxMDE@._V1_FMjpg_UX1280_.jpg',
+            fit: BoxFit.cover,
+          ),
+          Image.network(
+            'https://m.media-amazon.com/images/M/MV5BMTM3NzcxOTA2OF5BMl5BanBnXkFtZTgwNTc4OTIxMDE@._V1_FMjpg_UX1280_.jpg',
+            fit: BoxFit.cover,
+          ),
+          Image.network(
+            'https://m.media-amazon.com/images/M/MV5BMjMzMTk1ODY4NF5BMl5BanBnXkFtZTgwMjExMDMxMDE@._V1_FMjpg_UX1024_.jpg',
+            fit: BoxFit.cover,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Column buildCast() {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Text(
+              'Cast',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+            Text(
+              'See All',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: const [
+            CastItem(
+              realName: 'Chris Hemsworth',
+              characterName: 'Thor',
+            ),
+            Spacer(),
+            CastItem(
+              realName: 'Chris Hemsworth',
+              characterName: 'Thor',
+            ),
+            Spacer(),
+            CastItem(
+              realName: 'Chris Hemsworth',
+              characterName: 'Thor',
+            ),
+            Spacer(),
+            CastItem(
+              realName: 'Chris Hemsworth',
+              characterName: 'Thor',
+            ),
+            Spacer(),
+            CastItem(
+              realName: 'Chris Hemsworth',
+              characterName: 'Thor',
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget buildOverview(Movie mv) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          child: RichText(
+            text: TextSpan(
+              text: '',
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.75),
+                fontSize: 12,
+              ),
+              children: [
+                TextSpan(
+                  text: mv.overview,
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.75),
+                    fontSize: 12,
+                  ),
+                ),
+                const TextSpan(
+                  text: 'More',
+                  style: TextStyle(
+                    color: AppColors.lightBlue,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
