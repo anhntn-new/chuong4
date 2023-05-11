@@ -17,6 +17,11 @@ class SharedPreference {
     }
   }
 
+  static Future<bool> removeToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return await prefs.remove('token');
+  }
+
   static Future<void> setToken2(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token2', token);
@@ -31,6 +36,11 @@ class SharedPreference {
       print('get token err -> ' + e.toString());
       return null;
     }
+  }
+
+  static void removeToken2() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token2');
   }
 
   static Future<void> setDueDate(String dueDate) async {

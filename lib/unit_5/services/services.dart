@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:chuong4/unit_5/database/shared_preference.dart';
 import 'package:chuong4/unit_5/modal/movie_modal.dart';
-import 'package:chuong4/unit_5/services/api.dart';
+import 'package:chuong4/unit_5/network/api.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
