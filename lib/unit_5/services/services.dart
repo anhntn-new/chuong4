@@ -19,7 +19,7 @@ class Services {
 
     try {
       var response = await client.get(
-          Uri.https('$baseApi', '${Api.apiRequestToken}', {'api_key': apiKey}));
+          Uri.https(baseApi, Api.apiRequestToken, {'api_key': apiKey}));
       print(response.body);
       var decodedResponse = jsonDecode(response.body) as Map;
       if (decodedResponse['success']) {
@@ -37,7 +37,7 @@ class Services {
 
     try {
       var response = await client.post(
-          Uri.https('$baseApi', '${Api.apiValidateLogin}', {'api_key': apiKey}),
+          Uri.https(baseApi, Api.apiValidateLogin, {'api_key': apiKey}),
           body: {
             'username': userName,
             'password': password,

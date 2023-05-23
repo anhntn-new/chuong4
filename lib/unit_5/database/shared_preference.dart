@@ -3,26 +3,49 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreference {
   static Future<void> setToken(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('token', token);
+    prefs.setString('token_for_db', token);
   }
 
   static Future<String?> getToken() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('token');
+      String? token = prefs.getString('token_for_db');
       return token;
     } catch (e) {
-      print('get token err -> ' + e.toString());
+      print('get token_for_db err -> ' + e.toString());
       return null;
     }
   }
 
   static Future<bool> removeToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return await prefs.remove('token');
+    return await prefs.remove('token_for_db');
   }
 
-  static Future<void> setToken2(String token) async {
+
+  static Future<void> setSessionAccessDB(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('session_for_db', token);
+  }
+
+  static Future<String?> getSessionAccessDB() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString('session_for_db');
+      return token;
+    } catch (e) {
+      print('get session_for_db err -> ' + e.toString());
+      return null;
+    }
+  }
+
+  static Future<bool> removeSessionAccessDB() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return await prefs.remove('session_for_db');
+  }
+
+
+  static Future<void> setSe(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token2', token);
   }

@@ -1,20 +1,21 @@
 import 'dart:convert';
 
 import 'package:chuong4/unit_5/database/shared_preference.dart';
+import 'package:chuong4/unit_5/modal/sessionModal.dart';
 import 'package:chuong4/unit_5/modal/tokenModal.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class SecureStorageHelper {
+class SecureStorage {
   static const _apiTokenKey = '_apiTokenKey';
 
   final FlutterSecureStorage _storage;
 
-  SecureStorageHelper._(this._storage);
+  SecureStorage._(this._storage);
 
-  static final SecureStorageHelper _instance =
-      SecureStorageHelper._(const FlutterSecureStorage());
+  static final SecureStorage _instance =
+      SecureStorage._(const FlutterSecureStorage());
 
-  static SecureStorageHelper get instance => _instance;
+  static SecureStorage get instance => _instance;
 
   //Save token
   void saveToken(TokenModal token) async {
@@ -28,15 +29,15 @@ class SecureStorageHelper {
     return SharedPreference.removeToken();
   }
 
-  //Get token
-  Future<TokenModal?> getToken() async {
+  //Get session
+  Future<SessionModal?> getSession() async {
     try {
       final key = await SharedPreference.getToken();
       final tokenEncoded = await _storage.read(key: key ?? '');
       if (tokenEncoded == null) {
         return null;
       } else {
-        return TokenModal.fromJson(
+        return SessionModal.fromJson(
             jsonDecode(tokenEncoded) as Map<String, dynamic>);
       }
     } catch (e) {

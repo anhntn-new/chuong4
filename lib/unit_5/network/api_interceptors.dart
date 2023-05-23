@@ -11,9 +11,9 @@ class ApiInterceptors extends InterceptorsWrapper {
     final method = options.method;
     final uri = options.uri;
     final data = options.data;
-    final token = await SecureStorageHelper.instance.getToken();
+    final token = await SecureStorage.instance.getSession();
     if (token != null) {
-      options.headers['Authorization'] = 'Bearer ${token.requestToken}';
+      options.headers['Authorization'] = 'Bearer ${token.sessionId}';
     }
     if (method == 'GET') {
       logger.log(
@@ -22,14 +22,14 @@ class ApiInterceptors extends InterceptorsWrapper {
     } else {
       try {
         logger.log(
-            "✈️ REQUEST[$method] => PATH: $uri \n Token: ${token?.accessToken} \n DATA: ${jsonEncode(data)}",
+            "✈️ REQUEST[$method] => PATH: $uri \n Token: ${token?.sessionId} \n DATA: ${jsonEncode(data)}",
             printFullText: true);
       } catch (e) {
         logger.log(
-            "✈️ REQUEST[$method] => PATH: $uri \n Token: ${token?.accessToken} \n DATA: $data",
+            "✈️ REQUEST[$method] => PATH: $uri \n Token: ${token?.sessionId} \n DATA: $data",
             printFullText: true);
       }
-    }.
+    }
     super.onRequest(options, handler);
   }
 
@@ -41,8 +41,8 @@ class ApiInterceptors extends InterceptorsWrapper {
     logger.log("✅ RESPONSE[$statusCode] => PATH: $uri\n DATA: $data");
     //Handle section expired
     if (response.statusCode == 401) {
-      SecureStorageHelper.instance.removeToken();
-      Get.off(const SignInPage());
+      SecureStorage.instance.removeToken();
+      // Get.off(const SignInPage());
     }
     super.onResponse(response, handler);
   }

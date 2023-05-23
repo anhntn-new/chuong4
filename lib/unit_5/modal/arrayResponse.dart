@@ -1,15 +1,15 @@
 
 import 'package:chuong4/unit_5/modal/movie_modal.dart';
 
-class ResponseMovie {
+class ArrayResponseMovie {
   int? page;
   List<Movie>? results;
   int? totalPages;
   int? totalResults;
 
-  ResponseMovie({this.page, this.results, this.totalPages, this.totalResults});
+  ArrayResponseMovie({this.page, this.results, this.totalPages, this.totalResults});
 
-  ResponseMovie.fromJson(Map<String, dynamic> json) {
+  ArrayResponseMovie.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
       results = <Movie>[];
